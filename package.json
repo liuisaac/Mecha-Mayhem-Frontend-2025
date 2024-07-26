@@ -13,7 +13,7 @@
     "@react-three/fiber": "^8.16.8",
     "@types/three": "^0.165.0",
     "axios": "^1.7.2",
-    "framer-motion": "^11.2.6",
+    "framer-motion": "^11.3.17",
     "google-auth-library": "^9.11.0",
     "googleapis": "^140.0.1",
     "net": "^1.0.2",

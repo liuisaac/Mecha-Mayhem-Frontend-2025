@@ -15,7 +15,7 @@ const Display = ({ data }) => {
                             <th className="pr-8">LOCATION</th>
                         </tr>
                     </thead>
-                    <tbody className='text-regular text-white'>
+                    <tbody className='text-regular text-white opacity-80'>
                         {
                             data.map((row, index) => (
                                 <tr key={index}>

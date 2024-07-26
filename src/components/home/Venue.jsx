@@ -1,14 +1,9 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
-import { Canvas, useLoader } from "@react-three/fiber";
-import { useState } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { PerspectiveCamera } from "@react-three/drei";
+import React from "react";
 import Bmo from "./three/Bmo";
 
 const Venue = () => {
-    const hober = useLoader(GLTFLoader, "./three/bmo_large.glb");
     return (
         <section className="w-screen h-screen overflow-hidden">
             <div className="flex flex-row h-screen w-screen justify-center overflow-visible backdrop-blur-sm bg-white bg-opacity-70">
