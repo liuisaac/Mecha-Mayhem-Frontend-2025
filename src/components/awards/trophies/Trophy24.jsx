@@ -50,8 +50,8 @@ const Trophy23 = () => {
                 <ambientLight />
                 <PresentationControls
                     polar={[0, 0]}
-                    config={{ mass: 0.1, tension: 1, friction: 100 }}
-                    speed={5}
+                    config={{ mass: 0.05, tension: 1, friction: 100 }}
+                    speed={50}
                 >
                     <Mesh />
                 </PresentationControls>

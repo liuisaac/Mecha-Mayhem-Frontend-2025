@@ -11,17 +11,18 @@ const Venue = () => {
                 <article className="absolute w-screen h-screen flex-col-left pl-16">
                     <header className="font-saira text-8xl">THE VENUE.</header>
                     <h2 className="font-bebas text-5xl pl-4 mt-4">
-                        BMO CENTRE HALLS BC
+                        BMO CENTRE HALLS A1 A2
                     </h2>
                     <p className="font-lexend text-3xl flex-col-left mt-8 gap-2">
-                        <span>1200 sq. feet</span>
-                        <span>5 min away from Banff</span>
-                        <span>12 minutes away from Telus Spark</span>
-                        <span>1239 minutes away from Azerbaijan</span>
-                        <span>18000000 minutes away from Armenia</span>
-                        <span className="mt-4">
-                            5minutes awat from cemenetary
-                            {"("}hi uncle john i mis syou died at age 27
+                        <span>100,000 sq. feet</span>
+                        <span>Brand New Expansion Hall</span>
+                        <span>Largest Convention Centre in Western Canada</span>
+                        <span>Located on Stampede Park</span>
+                        <span>
+                            C-Train Stop @ Victoria Station (Stampede Station)
+                        </span>
+                        <span>
+                            10 Minutes away from Partner Hotels
                         </span>
                     </p>
                     <button className="group w-[30vw] h-[10vh] bg-white hover:bg-black transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20">

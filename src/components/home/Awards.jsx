@@ -18,23 +18,24 @@ const Awards = () => {
                     8 WORLDS SPOTS.
                 </header>
                 <h2 className="text-6xl z-10 ml-20 font-bebas mt-8">
-                    HIGH SCHOOL
+                    {"(3x)"} HIGH SCHOOL
                 </h2>
                 <p className="flex flex-col items-end justify-center">
                     <span>Excellence</span>
-                    <span>Tournament Champions</span>
-                    <span>Robot Skills</span>
+                    <span>{"(2x)"} Tournament Champions</span>
                 </p>
                 <h2 className="text-6xl z-10 ml-20 font-bebas mt-16">
-                    MIDDLE SCHOOL
+                    {"(3x)"} MIDDLE SCHOOL
                 </h2>
                 <p className="flex flex-col items-end justify-center">
-                    <span>Tournament Champions</span>
+                    <span>Excellence</span>
+                    <span>{"(2x)"} Tournament Champions </span>
                 </p>
                 <h2 className="text-6xl z-10 ml-20 font-bebas mt-16">
-                    COLLEGIATE
+                    {"(2x)"} COLLEGIATE
                 </h2>
                 <p className="flex flex-col items-end justify-center">
+                    <span>Excellence</span>
                     <span>Tournament Champions</span>
                 </p>
             </div>

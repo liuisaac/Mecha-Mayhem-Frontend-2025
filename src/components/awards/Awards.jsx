@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Trophy23 from "./trophies/Trophy23";
 import Trophy24 from "./trophies/Trophy24";
@@ -58,9 +58,9 @@ const Awards = () => {
                 </aside>
 
                 <figure className="flex-row-start w-1/2">
-                    <div className="relative w-[50vw] h-[50vw] mt-12 -ml-12">
+                    <div className="relative w-[40vw] h-[40vw] mt-12 ml-12">
                         <Image
-                            src="/streams/newStreams.png"
+                            src="/awards/awards.png"
                             alt="mecha mayhem logo"
                             style={{ objectFit: "contain" }}
                             fill
@@ -70,12 +70,14 @@ const Awards = () => {
             </div>
             <div>
                 <div className="flex-row-centered">
-                    <div className="flex flex-col gap-12 mt-12 mr-[30vw]">
-                        <Display data={awards2024} />
-                    </div>
-                    <Trophy24 />
+                    <Suspense>
+                        <div className="flex flex-col gap-12 mt-12 mr-[30vw]">
+                            <Display data={awards2024} />
+                        </div>
+                        <Trophy24 />
+                    </Suspense>
                 </div>
-                <div className="flex-row-centered">
+                <div className="flex-row-centered mt-16">
                     <Trophy23 />
                     <div className="flex flex-col gap-12 ml-[30vw]">
                         <Display data={awards2023} />

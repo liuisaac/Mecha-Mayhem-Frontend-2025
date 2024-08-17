@@ -7,21 +7,25 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 const Navbar = () => {
-    const ref = useRef(null);
+    const whitelist = ["/streams/matches", "/streams/vods"]
     const location = usePathname();
     const [active, setActive] = useState(String(location.pathname));
     const [hidden, setHidden] = useState(false);
+    const [hidable, setHidable] = useState(true);
     const [menu, setMenu] = useState(false);
 
     useEffect(() => {
         setActive(`/${String(location).split("/")[1]}`);
+        // console.log(String(location))
+        if (whitelist.includes(String(location))) {
+            setHidable(false);
+            console.log(whitelist.includes(String(location)))
+        }
     }, [location]);
 
     // weird ass chatgpt code idk either nextjs is wack
     useEffect(() => {
         let lastScrollY = document.body.scrollTop || window.scrollY; // Use document.body.scrollTop for compatibility
-    
-        console.log("1");
     
         const handleScroll = () => {
             const currentScrollY = document.body.scrollTop || window.scrollY; // Get current scroll position
@@ -48,7 +52,7 @@ const Navbar = () => {
                 visible: { y: 0 },
                 hidden: { y: "-100%" },
             }}
-            animate={hidden ? "hidden" : "visible"}
+            animate={(hidden && hidable) ? "hidden" : "visible"}
             transition={{ duration: 1, ease: "easeInOut" }}
             className="w-screen h-20 bg-[#111111] flex-col-centered z-50 fixed top-0 border-b-[1px] border-white"
         >

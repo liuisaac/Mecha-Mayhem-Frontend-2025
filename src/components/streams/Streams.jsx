@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Backdrop from "../home/hero/Backdrop";
+import Link from "next/link";
 
 const Streams = () => {
     return (
@@ -12,7 +13,8 @@ const Streams = () => {
                         High-definition streams that capture every moment of the
                         event.
                     </p>
-                    <button className="w-[27vw] h-[10vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20">
+                    <Link className="w-[27vw] h-[10vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20"
+                    href="/streams/matches">
                         <figure className="flex-row-start">
                             <div className="relative w-12 h-12">
                                 <Image
@@ -24,9 +26,11 @@ const Streams = () => {
                             </div>
                         </figure>
                         <h2 className="ml-5 h-full text-center text-5xl z-10 font-bebas mt-12 text-black hover:text-black transition duration-1000 ease-in-out">
-                            SEE YOUR TEAMS CLIPS
+                            SEE YOUR TEAM'S MATCHES
                         </h2>
-                    </button>
+                    </Link>
+                    <Link href="/streams/vods" 
+                    className="w-[27vw] flex-row-centered text-center font-lexend font-light mt-4 underline">Click here to see the full VODS</Link>
                 </div>
             </aside>
 
