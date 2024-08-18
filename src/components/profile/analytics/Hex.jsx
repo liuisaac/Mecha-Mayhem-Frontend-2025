@@ -13,7 +13,7 @@ const Hex = () => {
                         fill
                     />
                 </div>
-            </figure>{" "}
+            </figure>
             <figure className="absolute bg-blue-500 transition duration-200 ease-in-out [clip-path:polygon(50%_0%,93.5%_25%,93.5%_75%,50%_100%,6.5%_75%,6.5%_25%)] w-[50vw] h-[50vw] bg-opacity-40"></figure>
             </div>
     );

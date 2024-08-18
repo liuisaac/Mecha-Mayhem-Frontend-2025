@@ -1,9 +1,21 @@
-import React from 'react'
+import Match from "@/components/streams/Matches/Banners/Match";
+import React, { useEffect } from "react";
 
-const Matches = () => {
-  return (
-    <div>Matches</div>
-  )
-}
+const Matches = ({ matches }) => {
+  useEffect(() => {
+    console.log(matches)
+  }, [matches])
+  
+    return (
+        <div className="flex-col-centered w-screen z-10">
+          <div className="w-full pr-[15vw] ">
+                        {matches.map((matchData, index) => {
+                return <Match json={matchData} key={index} />;
+            })}
+          </div>
 
-export default Matches
+        </div>
+    );
+};
+
+export default Matches;

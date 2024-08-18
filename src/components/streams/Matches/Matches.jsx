@@ -114,7 +114,7 @@ const Matches = () => {
                 ) : (
                     <Match json={matchData} key={index} />
                 );
-            })}{" "}
+            })}
             <div className="w-full h-full text-4xl flex-row-centered pl-[15vw]">
                 <button
                     onClick={() => {
