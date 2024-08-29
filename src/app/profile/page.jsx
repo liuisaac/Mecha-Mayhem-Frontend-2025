@@ -9,6 +9,7 @@ import TeamSelected from "@/components/profile/TeamSelected";
 import Waves from "@/components/Waves";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const page = () => {
     const [teamNumber, setTeamNumber] = useState("");
@@ -40,6 +41,42 @@ const page = () => {
         }
     }, [stats]);
 
+    const reqTeam = async (name, drop) => {
+        try {
+            const res = await axios.get(
+                `http://localhost:8080/teams/${name}/${drop}/2024`
+            );
+            console.log(res);
+            return (res);
+        } catch (error) {
+            if (error.response) {
+                console.error("Error response message:", error.response.data.error);
+
+                if (error.response.status === 404) {
+                    if (error.response.data.error == "Team not found") {
+                        console.log("Team not found")
+                    } else {
+                        console.log("No team data for 2024")
+                    }
+                } else if (error.response.status === 419) {
+                    console.error("Too many attempts. Please try again later.");
+                } else {
+                    console.error(
+                        `Error: ${error.response.status} - ${error.response.data}`
+                    );
+                }
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.error(
+                    "No response received from the server. Please check the server or network."
+                );
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error("Error setting up the request:", error.message);
+            }
+        }
+    };
+
     return (
         <div className="bg-black relative">
             <div className="relative w-screen h-screen overflow-hidden">
@@ -51,7 +88,7 @@ const page = () => {
                     teamNumber == "" ? "opacity-100" : "opacity-0"
                 } transition-opacity duration-1000 ease-in-out`}
             >
-                <Profile setSubmit={setTeamNumber} setInfo={setStats} />
+                <Profile setSubmit={setTeamNumber} setInfo={setStats} reqTeam={reqTeam} />
             </div>
             <div
                 className={`${

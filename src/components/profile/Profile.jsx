@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const Profile = ({ setSubmit, setInfo }) => {
+const Profile = ({ setSubmit, setInfo, reqTeam }) => {
     const [value, setValue] = useState("");
     const [drop, setDrop] = useState("HS");
 
@@ -14,46 +14,10 @@ const Profile = ({ setSubmit, setInfo }) => {
         Collegiate: "UNI",
     };
 
-    const reqTeam = async (name) => {
-        try {
-            const res = await axios.get(
-                `http://localhost:8080/teams/${name}/${drop}/2024`
-            );
-            console.log(res);
-            setInfo(res);
-        } catch (error) {
-            if (error.response) {
-                console.error("Error response message:", error.response.data.error);
-
-                if (error.response.status === 404) {
-                    if (error.response.data.error == "Team not found") {
-                        console.log("Team not found")
-                    } else {
-                        console.log("No team data for 2024")
-                    }
-                } else if (error.response.status === 419) {
-                    console.error("Too many attempts. Please try again later.");
-                } else {
-                    console.error(
-                        `Error: ${error.response.status} - ${error.response.data}`
-                    );
-                }
-            } else if (error.request) {
-                // The request was made but no response was received
-                console.error(
-                    "No response received from the server. Please check the server or network."
-                );
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.error("Error setting up the request:", error.message);
-            }
-        }
-    };
-
     const submitTeam = async (event) => {
         event.preventDefault(); // prevent default form submission
         console.log(value);
-        reqTeam(value);
+        setInfo(await reqTeam(value, drop));
         setSubmit(value);
     };
 
