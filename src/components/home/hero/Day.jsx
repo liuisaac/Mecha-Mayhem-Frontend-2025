@@ -61,7 +61,7 @@ const Day = ({ startDay, targetDay }) => {
     };
 
     return (
-        <figure className="relative w-full h-[10vh] mt-8 flex-row-start overflow-x-clip ">
+        <figure className="relative w-full h-[10vh] 2xl:mt-8 xl:mt-12 flex-row-start overflow-x-clip ">
             {yearList.map((day, index) => {
                 const focused = index == fIndex - 1 || index == fIndex + 1;
                 const middle = index == fIndex;
@@ -71,7 +71,7 @@ const Day = ({ startDay, targetDay }) => {
                 const single = parseInt(day, 10) < 10;
 
                 return (
-                    <div key={index} className="w-15 flex-row-centered">
+                    <div key={index} className="w-[8vw] flex-row-centered 2xl:-translate-x-[8vw] xl:-translate-x-[12vw]">
                         <motion.p
                             initial={{
                                 skew: -12,
@@ -88,10 +88,10 @@ const Day = ({ startDay, targetDay }) => {
                                         : subfocused
                                         ? 0.9
                                         : 0.75,
-                                marginRight:
+                                        paddingRight:
                                     (focused ? 50 : subfocused ? 5 : 4) +
                                     (single ? 10 : 0),
-                                marginLeft:
+                                    paddingLeft:
                                     (focused ? 40 : subfocused ? 5 : 4) +
                                     (single ? 10 : 0),
                                 x: -1000,
@@ -110,10 +110,10 @@ const Day = ({ startDay, targetDay }) => {
                                         : subfocused
                                         ? 0.9
                                         : 0.75,
-                                marginRight:
+                                paddingRight:
                                     (focused ? 50 : subfocused ? 5 : 4) +
                                     (single ? 10 : 0),
-                                marginLeft:
+                                    paddingLeft:
                                     (focused ? 40 : subfocused ? 5 : 4) +
                                     (single ? 10 : 0),
                                 x:
@@ -123,7 +123,7 @@ const Day = ({ startDay, targetDay }) => {
                             className={`                      
                             font-bebas text-center ${
                                 day < 10 ? "ml-8" : ""
-                            } ${(day == targetDay + 1) ? "text-6xl" : "text-8xl"}`}
+                            } ${(day == targetDay + 1) ? "2xl:text-6xl xl:text-5xl" : "2xl:text-8xl xl:text-7xl"}`}
                         >
                             {(day == targetDay + 1) ? "to" : day}
                         </motion.p>
