@@ -17,7 +17,7 @@ const Matches = () => {
         if (!eventSourceRef.current) {
             console.log("Creating a new EventSource connection...");
             eventSourceRef.current = new EventSource(
-                `http://localhost:8080/matches/2024/prairies`
+                `http://${BACKEND_ENDPOINT}/matches/2024/prairies`
             );
 
             eventSourceRef.current.onmessage = (event) => {

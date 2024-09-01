@@ -13,7 +13,7 @@ const Gallery = () => {
 
     const fetchPhotos = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/photos/gallery");
+            const res = await axios.get(`http://${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/photos/gallery`);
             console.log(res);
             setPhotos(res.data);
         } catch (error) {}
