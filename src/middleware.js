@@ -6,7 +6,7 @@ export function middleware(request) {
   
     // If the request matches the /api route, rewrite it to your backend
     if (pathname.startsWith('/api')) {
-      const backendUrl = `https://mecha-mayhem-frontend.vercel.app/${pathname}`;
+      const backendUrl = `https://rtjsrfj49d.execute-api.us-east-2.amazonaws.com/${pathname.replace('/api', '')}`;
       console.log(backendUrl);
       return NextResponse.rewrite(backendUrl);
     }
