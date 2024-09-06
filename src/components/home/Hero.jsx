@@ -23,7 +23,7 @@ const Hero = () => {
                 <div className="flex flex-col items-end justify-end relative 2xl:w-[calc(57vw+(1900px-100vw)*1/2)] 2xl:-ml-[calc((1900px-100vw)*1/2)] xl:w-[55vw] lg:w-[55vw]">
                     <Year startYear={2019} targetYear={2025} />
                     <Day startDay={22} targetDay={7} />
-                    <p className={`text-white font-bebas text-6xl absolute w-full flex-row-start pl-[16vw] mb-[4vh] -skew-x-12 ${fade ? "opacity-100" : "opacity-0"} transition duration-500 delay-[1000ms]`}>
+                    <p className={`text-white font-bebas text-6xl absolute w-full flex-row-start 2xl:pl-[16vw] lg:pl-[12vw] mb-[4vh] -skew-x-12 ${fade ? "opacity-100" : "opacity-0"} transition duration-500 delay-[1000ms]`}>
                         FEBRUARY
                     </p>
                 </div>

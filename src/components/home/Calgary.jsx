@@ -12,7 +12,7 @@ const Calgary = () => {
             </h2>
             <section className="w-screen flex-row-centered z-10">
                 <div className="w-1/3 flex flex-col items-start justify-start mt-20">
-                    <p className="w-[30vw] ml-20 text-3xl text-[#7c7c7c]">
+                    <p className="w-[30vw] ml-20 2xl:text-3xl xl:text-2xl lg:text-2xl text-sm text-[#7c7c7c]">
                         Mecha Mayhem brings together{" "}
                         <span className="text-white font-semibold">
                             over 260 teams

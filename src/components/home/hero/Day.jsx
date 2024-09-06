@@ -71,7 +71,7 @@ const Day = ({ startDay, targetDay }) => {
                 const single = parseInt(day, 10) < 10;
 
                 return (
-                    <div key={index} className="w-[8vw] flex-row-centered 2xl:-translate-x-[8vw] xl:-translate-x-[12vw]">
+                    <div key={index} className="w-[8vw] flex-row-centered 2xl:-translate-x-[8vw] xl:-translate-x-[16vw] lg:-translate-x-[20vw]">
                         <motion.p
                             initial={{
                                 skew: -12,
@@ -123,7 +123,7 @@ const Day = ({ startDay, targetDay }) => {
                             className={`                      
                             font-bebas text-center ${
                                 day < 10 ? "ml-8" : ""
-                            } ${(day == targetDay + 1) ? "2xl:text-6xl xl:text-5xl" : "2xl:text-8xl xl:text-7xl"}`}
+                            } ${(day == targetDay + 1) ? "2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl" : "2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl"}`}
                         >
                             {(day == targetDay + 1) ? "to" : day}
                         </motion.p>

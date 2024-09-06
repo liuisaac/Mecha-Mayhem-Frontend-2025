@@ -68,7 +68,7 @@ const Year = ({ startYear, targetYear }) => {
     };
 
     return (
-        <figure className="relative w-full 2xl:h-16 2xl:mt-4 xl:h-8 xl:mt-4 mt-8 lg:h-8 lg:-mt-8 flex-row-start overflow-x-clip pr-10 gap-5">
+        <figure className="relative w-full 2xl:h-16 2xl:mt-4 xl:h-8 xl:mt-4 xl:mb-2 lg:h-8 lg:-mt-8 lg:mb-8 flex-row-start overflow-x-clip pr-10 gap-5">
             {yearList.map((year, index) => {
                 const focused = index == fIndex;
                 const subfocused = index == fIndex + 1 || index == fIndex - 1;
