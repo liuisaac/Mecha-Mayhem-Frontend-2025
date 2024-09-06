@@ -44,7 +44,7 @@ const page = () => {
     const reqTeam = async (name, drop) => {
         try {
             const res = await axios.get(
-                `http://${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/teams/${name}/${drop}/2024`
+                `https://${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/teams/${name}/${drop}/2024`
             );
             console.log(res);
             return (res);
