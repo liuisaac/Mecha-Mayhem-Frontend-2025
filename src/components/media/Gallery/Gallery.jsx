@@ -13,11 +13,11 @@ const Gallery = () => {
 
     const fetchPhotos = async () => {
         try {
-            const res = await axios.get(`https://${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/photos/gallery`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/photos/gallery`);
             console.log(res);
             const photoData = res.data.map(photo => ({
                 ...photo,
-                url: photo.url.replace('http://localhost:8080', `https://${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}`),
+                url: photo.url.replace('http://localhost:8080', `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}`),
             }));
             setPhotos(res.data);
         } catch (error) {}

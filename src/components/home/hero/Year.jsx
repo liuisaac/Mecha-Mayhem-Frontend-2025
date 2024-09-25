@@ -68,7 +68,7 @@ const Year = ({ startYear, targetYear }) => {
     };
 
     return (
-        <figure className="relative w-full 2xl:h-16 2xl:mt-4 xl:h-8 xl:mt-4 xl:mb-2 lg:h-8 lg:-mt-8 lg:mb-8 flex-row-start overflow-x-clip pr-10 gap-5">
+        <figure className="relative w-full 2xl:h-16 2xl:mt-4 xl:h-8 xl:mt-4 xl:mb-2 lg:h-8 lg:-mt-8 lg:mb-8 md:-mt-20 mt-2 flex-row-start overflow-x-clip pr-10 gap-5">
             {yearList.map((year, index) => {
                 const focused = index == fIndex;
                 const subfocused = index == fIndex + 1 || index == fIndex - 1;
@@ -76,7 +76,7 @@ const Year = ({ startYear, targetYear }) => {
                 return (
                     <div
                         key={index}
-                        className="w-96 flex-row-centered 2xl:translate-x-0 xl:translate-x-[33vw] lg:translate-x-[72vw]"
+                        className="sm:w-96 w-42 flex-row-centered 2xl:translate-x-[calc(2.5rem-2vw)] xl:translate-x-[calc(45vw-12rem)] lg:translate-x-[calc(45vw+20rem)] md:translate-x-[calc(30vw+43.5rem)] translate-x-[calc(50vw+23rem)]"
                     >
                         <motion.p
                             initial={{
@@ -105,7 +105,7 @@ const Year = ({ startYear, targetYear }) => {
                                     rotationConst * (fIndex - 2)
                             }}
                             className={`                      
-                            font-saira 2xl:text-9xl xl:text-8xl lg:text-7xl `}
+                            font-saira 2xl:text-9xl xl:text-8xl lg:text-7xl md:text-6xl text-7xl`}
                         >
                             {year}
                         </motion.p>

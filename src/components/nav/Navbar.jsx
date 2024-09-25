@@ -47,6 +47,7 @@ const Navbar = () => {
     }, []);
     
     return (
+        <>
         <motion.nav
             variants={{
                 visible: { y: 0 },
@@ -54,7 +55,7 @@ const Navbar = () => {
             }}
             animate={(hidden && hidable) ? "hidden" : "visible"}
             transition={{ duration: 1, ease: "easeInOut" }}
-            className="w-screen h-20 bg-[#111111] flex-col-centered z-50 fixed top-0 border-b-[1px] border-white"
+            className="w-screen h-20 bg-[#111111] flex-col-centered sm:opacity-100 opacity-0 sm:pointer-events-auto pointer-events-none z-50 fixed top-0 border-b-[1px] border-white"
         >
             <div className="w-[100vw] flex-row-centered h-12">
                 <figure className="flex-row-start w-[15vw]">
@@ -99,6 +100,59 @@ const Navbar = () => {
                 </figure>
             </div>
         </motion.nav>
+        <motion.nav
+            variants={{
+                visible: { y: 0 },
+                hidden: { y: "-100%" },
+            }}
+            animate={(hidden && hidable) ? "hidden" : "visible"}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="w-screen h-16 bg-[#F85050] z-50 fixed top-0 sm:hidden flex-col-centered"
+        >
+            <div className="w-[100vw] flex-row-centered h-12">
+                <figure className="flex-row-start w-[15vw]">
+                    <Link className="relative w-16 ml-4 h-12 " href="/">
+                        <Image
+                            src="/nav/home.svg"
+                            className="hover:fill-black fill-white"
+                            alt="mecha mayhem logo"
+                            style={{ objectFit: "contain" }}
+                            fill
+                        />
+                    </Link>
+                </figure>
+                {/* <section className="w-[70vw] flex justify-around font-bebas 2xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">
+                    {[
+                        ["/ 9 /", "/media"],
+                        ["/ STREAMS /", "/streams"],
+                        ["/ AWARDS /", "/awards"],
+                        ["/ INFO /", "/info"],
+                    ].map(([title, url]) => (
+                        <Link
+                            href={url}
+                            className={`${
+                                active === url ? "text-[#939393]" : "text-white"
+                            } rounded-lg px-3 py-2 tracking-wide select-none`}
+                            key={title}
+                        >
+                            {title}
+                        </Link>
+                    ))}
+                </section> */}
+
+                <figure className="flex-row-end w-full">
+                    <div className="relative w-12 mr-4 h-8">
+                        <Image
+                            src="/nav/menu.svg"
+                            alt="mecha mayhem logo"
+                            style={{ objectFit: "contain" }}
+                            fill
+                        />
+                    </div>
+                </figure>
+            </div>
+        </motion.nav>
+        </>
     );
 };
 

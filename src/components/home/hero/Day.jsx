@@ -61,7 +61,7 @@ const Day = ({ startDay, targetDay }) => {
     };
 
     return (
-        <figure className="relative w-full h-[10vh] 2xl:mt-8 xl:mt-12 flex-row-start overflow-x-clip ">
+        <figure className="relative w-full h-[10vh] 2xl:mt-8 xl:mt-12 mt-0 flex-row-start overflow-x-clip ">
             {yearList.map((day, index) => {
                 const focused = index == fIndex - 1 || index == fIndex + 1;
                 const middle = index == fIndex;
@@ -71,7 +71,7 @@ const Day = ({ startDay, targetDay }) => {
                 const single = parseInt(day, 10) < 10;
 
                 return (
-                    <div key={index} className="w-[8vw] flex-row-centered 2xl:-translate-x-[8vw] xl:-translate-x-[16vw] lg:-translate-x-[20vw]">
+                    <div key={index} className="sm:w-[8vw] w-14 flex-row-centered 2xl:-translate-x-[8vw] xl:-translate-x-[18vw] xl:-mt-6 lg:-translate-x-[26vw] lg:-mt-8 md:-translate-x-[30vw] -translate-x-[calc(34rem-50vw)]">
                         <motion.p
                             initial={{
                                 skew: -12,
@@ -123,7 +123,7 @@ const Day = ({ startDay, targetDay }) => {
                             className={`                      
                             font-bebas text-center ${
                                 day < 10 ? "ml-8" : ""
-                            } ${(day == targetDay + 1) ? "2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl" : "2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl"}`}
+                            } ${(day == targetDay + 1) ? "2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-xl" : "2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl text-6xl"}`}
                         >
                             {(day == targetDay + 1) ? "to" : day}
                         </motion.p>

@@ -15,7 +15,7 @@ const Awards = () => {
         const fetchAwards = async (year, setAwards) => {
             try {
                 const response = await axios.get(
-                    `https://${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/awards/${year}`
+                    `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/awards/${year}`
                 );
                 setAwards(response.data);
             } catch (error) {
