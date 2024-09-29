@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Hero from "@/components/home/Hero";
-import Calgary from "@/components/home/Calgary";
-import Awards from "@/components/home/Awards";
+import Hero from "@/components/home/desktop/Hero";
+import Calgary from "@/components/home/desktop/Calgary";
+import Awards from "@/components/home/desktop/Awards";
 import Waves from "@/components/Waves";
 import dynamic from "next/dynamic";
 
 // dynamically loading with ssr disabled, weird r3F drei thing
-const Venue = dynamic(() => import("@/components/home/Venue"), {
+const Venue = dynamic(() => import("@/components/home/desktop/Venue"), {
     ssr: false,
 });
 

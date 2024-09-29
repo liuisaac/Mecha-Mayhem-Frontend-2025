@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Year from "./hero/Year";
-import Day from "./hero/Day";
+import Year from "../hero/Year";
+import Day from "../hero/Day";
 
 const Hero_Mobile = () => {
     const [fade, setFade] = useState(false);

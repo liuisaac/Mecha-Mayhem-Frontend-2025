@@ -16,7 +16,7 @@ const Footer = () => {
                 » Mecha Mayhem 2024
             </div>
             <div className="w-[90vw] h-2/3 border-b-2 border-white border-opacity-40 flex flex-row items-end justify-start">
-                <div className="flex-col-left font-extralight text-xl gap-6 mr-12 mb-10 w-[15vw]">
+                <div className="flex-col-left font-extralight text-xl gap-6 mr-12 mb-10 xl:w-[15vw] w-[20vw]">
                     <span className="font-semibold">Contact Us</span>
                     <span className="flex-row-centered">
                         <figure className="w-[1.5vw] h-[1.5vw] relative overflow-hidden mr-2">
@@ -42,7 +42,7 @@ const Footer = () => {
                     </span>
                 </div>
                 <div>
-                    <div className="flex-col-left font-extralight text-xl gap-6 mb-10 w-[15vw]">
+                    <div className="flex-col-left font-extralight text-xl gap-6 mb-10 xl:w-[15vw] w-[20vw]">
                         <span className="font-semibold">Follow Us</span>
                         <figure className="flex-row-centered">
                             <figure className="w-[1.5vw] h-[1.5vw] relative overflow-hidden mr-2">
@@ -69,7 +69,7 @@ const Footer = () => {
                     </div>
                     <div></div>
                 </div>
-                <div className="flex-col-left font-extralight text-xl gap-6 ml-12 mb-10 w-[15vw]">
+                <div className="flex-col-left font-extralight text-xl gap-6 ml-12 mb-10 xl:w-[15vw] w-[20vw]">
                     <span className="font-semibold">Report an Issue</span>
                     <span className="flex-row-centered">
                         <figure className="w-[1.5vw] h-[1.5vw] relative overflow-hidden mr-2">

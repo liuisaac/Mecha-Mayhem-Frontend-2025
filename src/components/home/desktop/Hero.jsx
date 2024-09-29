@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Backdrop from "./hero/Backdrop";
-import Day from "./hero/Day";
-import Year from "./hero/Year";
-import Hero_Mobile from "./Hero-Mobile";
+import Backdrop from "../hero/Backdrop";
+import Day from "../hero/Day";
+import Year from "../hero/Year";
+import Hero_Mobile from "../mobile/Hero-Mobile";
 
 const Hero = () => {
     const [fade, setFade] = useState(false);
