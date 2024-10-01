@@ -32,35 +32,37 @@ body {
     }
 }
 
-/* width */
+/* Webkit Browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 0px;
-    height: 4px;
+    width: 10px; /* Wider track */
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: transparent; /* Transparent track */
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #000;
-    border-radius: 25px;
-    
+    background-color: #888; /* Thumb color */
+    border-radius: 10px;
+    border: 9px solid transparent; /* Make the thumb thinner with a larger transparent border */
 }
+
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
-html,
+html {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
 body {
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
+    padding: 0;
+    position: relative;
     overflow-x: hidden;
 }
 
@@ -88,11 +90,11 @@ body {
     @apply flex flex-row items-center justify-start;
 }
 
-.hide-scrollbar  {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.hide-scrollbar::-webkit-scrollbar  {
-  display: none;
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
 }
