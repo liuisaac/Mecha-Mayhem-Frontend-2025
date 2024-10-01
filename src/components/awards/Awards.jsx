@@ -71,7 +71,7 @@ const Awards = () => {
             <div>
                 <div className="flex-row-centered">
                     <Suspense>
-                        <div className="flex flex-col gap-12 mt-12 mr-[30vw]">
+                        <div className="flex flex-col gap-12 mt-12 mr-[30vw] z-10">
                             <Display data={awards2024} />
                         </div>
                         <Trophy24 />
@@ -79,7 +79,7 @@ const Awards = () => {
                 </div>
                 <div className="flex-row-centered mt-16">
                     <Trophy23 />
-                    <div className="flex flex-col gap-12 ml-[30vw]">
+                    <div className="flex flex-col gap-12 ml-[30vw] z-10">
                         <Display data={awards2023} />
                     </div>
                 </div>
