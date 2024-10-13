@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Calgary_Mobile from "../mobile/Calgary-Mobile";
+import Link from "next/link";
 
 const Calgary = () => {
     return (
@@ -36,11 +37,14 @@ const Calgary = () => {
                             in Dallas, TX.
                         </p>
 
-                        <button className="w-[30vw] ml-20 h-[10vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20">
+                        <Link
+                            href="https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-V5RC-24-5504.html#general-info"
+                            className="w-[30vw] ml-20 h-[10vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20"
+                        >
                             <h2 className="w-full mt-2 text-center text-5xl z-10 font-bebas text-black hover:text-black transition duration-1000 ease-in-out">
                                 REGISTER TODAY
                             </h2>
-                        </button>
+                        </Link>
 
                         <p className="w-[30vw] flex-row-centered ml-20 mt-4 text-sm">
                             Registration closes Oct 13

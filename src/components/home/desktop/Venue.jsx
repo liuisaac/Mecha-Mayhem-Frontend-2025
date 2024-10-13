@@ -3,6 +3,7 @@
 import React from "react";
 import Bmo from "../three/Bmo";
 import Venue_Mobile from "../mobile/Venue-Mobile";
+import Link from "next/link";
 
 const Venue = () => {
     return (
@@ -27,11 +28,12 @@ const Venue = () => {
                         </span>
                         <span>10 Minutes away from Partner Hotels</span>
                     </p>
-                    <button className="group w-[30vw] h-[10vh] bg-white hover:bg-black transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20">
+                    <Link href="/info"
+                    className="group w-[30vw] h-[10vh] bg-white hover:bg-black transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20">
                         <h2 className="w-full h-full text-center text-5xl z-10 font-bebas mt-12 text-black group-hover:text-white transition duration-200 ease-in-out">
                             SEE MAPS
                         </h2>
-                    </button>
+                    </Link>
                 </article>
             </div>
         </section>
