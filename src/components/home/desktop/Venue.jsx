@@ -1,9 +1,12 @@
 "use client";
 
 import React from "react";
-import Bmo from "../three/Bmo";
 import Venue_Mobile from "../mobile/Venue-Mobile";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const BMO = dynamic(() => import("../three/Bmo")); //component-level code splitting
+
 
 const Venue = () => {
     return (
@@ -12,7 +15,7 @@ const Venue = () => {
                 <Venue_Mobile />
             </div>
             <div className="sm:flex hidden flex-row h-screen w-screen justify-center overflow-visible backdrop-blur-sm bg-white bg-opacity-70">
-                <Bmo />
+                <BMO />
                 <article className="absolute w-screen h-screen flex-col-left pl-16">
                     <header className="font-saira text-8xl">THE VENUE.</header>
                     <h2 className="font-bebas text-5xl pl-4 mt-4">

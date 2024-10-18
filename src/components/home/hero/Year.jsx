@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-const Year = ({ startYear, targetYear }) => {
+const Year = ({ startYear, targetYear, startAnimation }) => { // Accept startAnimation prop
     const yearPadding = 2; // amount of padding years to add to each side
-    const startPoint = yearPadding; // the first initally focused year
+    const startPoint = yearPadding; // the first initially focused year
     const difference = targetYear - startYear;
 
     const [fIndex, setFIndex] = useState(startPoint); // index representing the currently focused year
@@ -44,14 +44,13 @@ const Year = ({ startYear, targetYear }) => {
     }, []);
 
     useEffect(() => {
-        if (fIndex < maxYear) {
+        if (fIndex < maxYear && startAnimation) { // Check startAnimation
             const timer = setTimeout(() => {
                 setFIndex(fIndex + 1); // increment
             }, animationTime);
-            // console.log(fIndex);
             return () => clearTimeout(timer);
         }
-    }, [fIndex]);
+    }, [fIndex, startAnimation]); // Add startAnimation to dependencies
 
     // animate opacity based on if it is focused (index)
     const calcOpacity = (focused, subfocused, index) => {
@@ -70,8 +69,8 @@ const Year = ({ startYear, targetYear }) => {
     return (
         <figure className="relative w-full 2xl:h-16 2xl:mt-4 xl:h-8 xl:mt-4 xl:mb-2 lg:h-8 lg:-mt-8 lg:mb-8 md:-mt-20 mt-2 flex-row-start overflow-x-clip pr-10 gap-5">
             {yearList.map((year, index) => {
-                const focused = index == fIndex;
-                const subfocused = index == fIndex + 1 || index == fIndex - 1;
+                const focused = index === fIndex;
+                const subfocused = index === fIndex + 1 || index === fIndex - 1;
 
                 return (
                     <div
@@ -81,28 +80,18 @@ const Year = ({ startYear, targetYear }) => {
                         <motion.p
                             initial={{
                                 skew: -12,
-                                opacity: calcOpacity(
-                                    focused,
-                                    subfocused,
-                                    index
-                                ),
+                                opacity: calcOpacity(focused, subfocused, index),
                                 scale: focused ? 1.05 : subfocused ? 0.9 : 0.75,
                                 marginRight: focused ? 50 : subfocused ? 5 : 4,
                                 marginLeft: focused ? 40 : subfocused ? 5 : 4,
                                 x: -100,
                             }}
                             animate={{
-                                opacity: calcOpacity(
-                                    focused,
-                                    subfocused,
-                                    index
-                                ),
+                                opacity: calcOpacity(focused, subfocused, index),
                                 scale: focused ? 1.05 : subfocused ? 0.9 : 0.75,
                                 marginRight: focused ? 50 : subfocused ? 5 : 4,
                                 marginLeft: focused ? 40 : subfocused ? 5 : 4,
-                                x:
-                                    -100 -
-                                    rotationConst * (fIndex - 2)
+                                x: -100 - rotationConst * (fIndex - 2),
                             }}
                             className={`                      
                             font-saira 2xl:text-9xl xl:text-8xl lg:text-7xl md:text-6xl text-7xl`}

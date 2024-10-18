@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-const Day = ({ startDay, targetDay }) => {
-    const startingFIndex = 20; //starting day
+const Day = ({ startDay, targetDay, startAnimation }) => {
+    const startingFIndex = 20; // starting day
     const dayPadding = 6;
     const maxDay = startDay + dayPadding;
     const minDay = targetDay - dayPadding;
@@ -16,39 +16,35 @@ const Day = ({ startDay, targetDay }) => {
 
     const yearList = [];
     for (let i = minDay; i <= maxDay; i++) {
-        yearList.push(String(i));
+        yearList.push(String(i === targetDay + 1 ? "to" : i));
     }
-
-    // console.log(yearList);
-
-    // Trigger on mount once to trigger other useEffect
+    
+    // Trigger on mount once to set the initial fIndex
     useEffect(() => {
         setFIndex(startingFIndex);
     }, []);
 
-    // decrement fIndex until target is reached
+    // Decrement fIndex until target is reached if startAnimation is true
     useEffect(() => {
-        if (fIndex > targetDay) {
+        if (startAnimation && fIndex > targetDay) { // Check if startAnimation is true
             const timer = setTimeout(() => {
                 setFIndex(fIndex - 1); // decrement
             }, animationTime);
-            // console.log(fIndex);
             return () => clearTimeout(timer);
         }
-    }, [fIndex]);
+    }, [fIndex, startAnimation]); // Add fIndex and startAnimation to dependencies
 
-    // animate opacity based on if it is focused (index)
+    // Animate opacity based on if it is focused (index)
     const calcOpacity = (focused, hideMiddle, subfocused, index, fIndex) => {
-        // fIndex + (targetDay - dayPadding) == day Value
         const distance = index - fIndex;
         if (hideMiddle) {
             return 1; // target middle, hide
         }
-        if (index == fIndex) {
+        if (index === fIndex) {
             return 0.3; // middle but not target
         }
         if (focused) {
-            if (index - 1 == targetDay || index + 1 == targetDay) {
+            if (index - 1 === targetDay || index + 1 === targetDay) {
                 return 1;
             } else {
                 return 0.3;
@@ -61,12 +57,12 @@ const Day = ({ startDay, targetDay }) => {
     };
 
     return (
-        <figure className="relative w-full h-[10vh] 2xl:mt-8 xl:mt-12 mt-0 flex-row-start overflow-x-clip ">
+        <figure className="relative w-full h-[10vh] 2xl:mt-8 xl:mt-12 mt-0 flex-row-start overflow-x-clip">
             {yearList.map((day, index) => {
-                const focused = index == fIndex - 1 || index == fIndex + 1;
-                const middle = index == fIndex;
-                const middleHide = index == fIndex && index == targetDay;
-                const subfocused = index == fIndex + 2 || index == fIndex - 2;
+                const focused = index === fIndex - 1 || index === fIndex + 1;
+                const middle = index === fIndex;
+                const middleHide = index === fIndex && index === targetDay;
+                const subfocused = index === fIndex + 2 || index === fIndex - 2;
 
                 const single = parseInt(day, 10) < 10;
 
@@ -75,57 +71,23 @@ const Day = ({ startDay, targetDay }) => {
                         <motion.p
                             initial={{
                                 skew: -12,
-                                opacity: calcOpacity(
-                                    focused,
-                                    middleHide,
-                                    subfocused,
-                                    index,
-                                    fIndex
-                                ),
-                                scale:
-                                    focused || middle
-                                        ? 1.05
-                                        : subfocused
-                                        ? 0.9
-                                        : 0.75,
-                                        paddingRight:
-                                    (focused ? 50 : subfocused ? 5 : 4) +
-                                    (single ? 10 : 0),
-                                    paddingLeft:
-                                    (focused ? 40 : subfocused ? 5 : 4) +
-                                    (single ? 10 : 0),
+                                opacity: calcOpacity(focused, middleHide, subfocused, index, fIndex),
+                                scale: focused || middle ? 1.05 : subfocused ? 0.9 : 0.75,
+                                paddingRight: (focused ? 50 : subfocused ? 5 : 4) + (single ? 10 : 0),
+                                paddingLeft: (focused ? 40 : subfocused ? 5 : 4) + (single ? 10 : 0),
                                 x: -1000,
                             }}
                             animate={{
-                                opacity: calcOpacity(
-                                    focused,
-                                    middleHide,
-                                    subfocused,
-                                    index,
-                                    fIndex
-                                ),
-                                scale:
-                                    focused || middle
-                                        ? 1.05
-                                        : subfocused
-                                        ? 0.9
-                                        : 0.75,
-                                paddingRight:
-                                    (focused ? 50 : subfocused ? 5 : 4) +
-                                    (single ? 10 : 0),
-                                    paddingLeft:
-                                    (focused ? 40 : subfocused ? 5 : 4) +
-                                    (single ? 10 : 0),
-                                x:
-                                    -1000 +
-                                    rotationConst * (startingFIndex - fIndex),
+                                opacity: calcOpacity(focused, middleHide, subfocused, index, fIndex),
+                                scale: focused || middle ? 1.05 : subfocused ? 0.9 : 0.75,
+                                paddingRight: (focused ? 50 : subfocused ? 5 : 4) + (single ? 10 : 0),
+                                paddingLeft: (focused ? 40 : subfocused ? 5 : 4) + (single ? 10 : 0),
+                                x: -1000 + rotationConst * (startingFIndex - fIndex),
                             }}
                             className={`                      
-                            font-bebas text-center ${
-                                day < 10 ? "ml-8" : ""
-                            } ${(day == targetDay + 1) ? "2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-xl" : "2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl text-6xl"}`}
+                            font-bebas text-center ${day < 10 ? "ml-8" : ""} ${(day === "to") ? "2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-xl" : "2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl text-6xl"}`}
                         >
-                            {(day == targetDay + 1) ? "to" : day}
+                            {day}
                         </motion.p>
                     </div>
                 );

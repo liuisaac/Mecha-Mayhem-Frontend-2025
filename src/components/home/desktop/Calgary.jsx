@@ -53,7 +53,7 @@ const Calgary = () => {
                     <div className="w-2/3 mt-[5vh] flex-row-centered">
                         <div className=" w-[40vw] h-[25vw] border-2 border-white ml-16">
                             <iframe
-                                src="https://www.youtube.com/embed/Sx6HJSpopeQ"
+                                src="https://www.youtube.com/embed/e-PBs0b2zsc"
                                 frameBorder="0"
                                 allowFullScreen
                                 className="w-full h-full"
