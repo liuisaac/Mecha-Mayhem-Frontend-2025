@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-const Year = ({ startYear, targetYear, startAnimation }) => { // Accept startAnimation prop
+const Year = ({ startYear, targetYear, startAnimation=true }) => { // Accept startAnimation prop
     const yearPadding = 2; // amount of padding years to add to each side
     const startPoint = yearPadding; // the first initially focused year
     const difference = targetYear - startYear;

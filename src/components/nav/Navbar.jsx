@@ -110,7 +110,7 @@ const Navbar = () => {
             className="w-screen h-16 bg-[#F85050] z-50 fixed top-0 sm:hidden flex-col-centered"
         >
             <div className="w-[100vw] flex-row-centered h-12">
-                <figure className="flex-row-start w-[15vw]">
+                <figure className="flex-row-start w-20">
                     <Link className="relative w-16 ml-4 h-12 " href="/">
                         <Image
                             src="/nav/home.svg"

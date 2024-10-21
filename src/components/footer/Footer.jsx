@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <div className="w-full h-[50vh] bg-[#171717] z-50 flex-col-centered text-white font-lexend">
+        <div className="w-screen overflow-hidden h-[50vh] bg-[#171717] z-50 flex-col-centered text-white font-lexend">
             <div className="w-[90vw] flex-row-start mt-16 font-lexend">
                 <figure className="w-8 h-8 relative overflow-hidden">
                     <Image

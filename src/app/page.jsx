@@ -12,9 +12,9 @@ export default function Home() {
         <main className="relative w-screen bg-black">
             <Waves />
             <Hero />   
-            <Calgary /> {/* This will load dynamically */}
-            <Awards />  {/* This will load dynamically */}
-            <Venue />   {/* This will load dynamically */}
+            <Calgary />
+            <Awards /> 
+            <Venue />  
         </main>
     );
 }
