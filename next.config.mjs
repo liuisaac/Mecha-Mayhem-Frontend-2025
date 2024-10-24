@@ -7,6 +7,7 @@ const nextConfig = {
             "storage.googleapis.com",
             "mecha-mayhem-frontend.vercel.app",
             "mecha-photo-gallery.s3.amazonaws.com",
+            "3.141.205.129"
         ],
     },
 };

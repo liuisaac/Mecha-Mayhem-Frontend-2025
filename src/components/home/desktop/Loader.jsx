@@ -31,7 +31,7 @@ const Loader = ({ fadeOut }) => {
     if (!showLoader && delayComplete) return null; // Do not render the loader if it's not visible and the delay is complete
 
     return (
-        <div className={`flex justify-center items-center w-screen h-[120vh] bg-[#292929] z-10 transition-opacity duration-300 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+        <div className={`flex justify-center items-center fixed top-0 z-40 w-screen h-[120vh] bg-[#292929] transition-opacity duration-300 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
             <div className="-mt-24">
                 <figure className="flex-row-centered w-[15vw]">
                     <Link className="relative w-40 h-40" href="/">
