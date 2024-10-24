@@ -48,6 +48,7 @@ const Gallery = () => {
                                 src={photo.url}
                                 alt="Image not found"
                                 style={{ objectFit: "cover" }}
+                                unoptimized
                                 fill
                                 sizes="80vw"
                             />
