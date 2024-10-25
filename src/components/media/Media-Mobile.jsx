@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Backdrop from "../home/hero/Backdrop";
+import Link from "next/link";
 
 const Media_Mobile = () => {
     return (
@@ -35,9 +36,9 @@ const Media_Mobile = () => {
                         />
                     </div>
                 </figure>
-                <h2 className="flex-row-centered ml-5 h-full text-center sm:text-4xl text-3xl z-10 font-bebas mt-1 text-black hover:text-black transition duration-1000 ease-in-out">
+                <Link href="https://photos.app.goo.gl/7tMPBiM4B5AyAJe17" className="flex-row-centered ml-5 h-full text-center sm:text-4xl text-3xl z-10 font-bebas mt-1 text-black hover:text-black transition duration-1000 ease-in-out">
                     OPEN DRIVE FOLDER
-                </h2>
+                </Link>
             </button>
         </section>
     );
