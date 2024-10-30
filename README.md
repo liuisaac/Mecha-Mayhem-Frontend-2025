@@ -12,6 +12,9 @@ Join the official event Discord! https://discord.gg/fMJSW3Jv4n
 
 Welcome to Mecha Mayhem 2025! We aim to bring the best teams from all over Canada and the World to compete and to prepare students for their own State/Provincial Championships and the VEX Robotics World Championship. The event setup is designed to have a "worlds feel" and will provide the teams with the experience of high-level competition! Elimination rounds will include 16 alliances. There will be 2 High School Divisions, 1 Middle School Division, and 1 VEXU Division. More news to come!
 
+# Event Dates
+Februrary 7-9, 2025
+
 # About the Website
 
 The Mecha Mayhem website is a passion project led and created entirely by former robotics students and Mecha Mayhem competitors for the VEX community. Our goal is to provide an engaging platform for participants, fans, and supporters to access all the information they need about the event. Here, you'll find details about the competition schedule, team registrations, division information, live updates during the event, and much more. We strive to ensure that everyone has the best possible experience, whether they are competing, mentoring, or cheering from the sidelines. Thank you for being part of the Mecha Mayhem family, and we look forward to seeing you in February!
