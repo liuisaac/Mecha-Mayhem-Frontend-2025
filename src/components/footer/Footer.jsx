@@ -28,7 +28,7 @@ const Footer = () => {
                                 fill
                             />
                         </figure>
-                        <span className="max-md:break-all">Mecha@westernmech.ca</span>
+                        <span className="break-normal">Mecha@westernmech.ca</span>
                     </span>
                     <span className="flex flex-row items-center sm:flex-row-centered">
                         <figure className="w-[4vw] h-[4vw] sm:w-[1.5vw] sm:h-[1.5vw] relative overflow-hidden mr-2">
@@ -39,7 +39,7 @@ const Footer = () => {
                                 fill
                             />
                         </figure>
-                        <span className="max-md:break-all">403-991-3277</span>
+                        <span className="break-normal">403-991-3277</span>
                     </span>
                 </div>
                 <div className="flex flex-col sm:items-start font-extralight text-base lg:text-xl sm:gap-6 sm:mr-12 mb-10 w-3/4 sm:w-1/4">
@@ -53,7 +53,7 @@ const Footer = () => {
                                 fill
                             />
                         </figure>
-                        <span className="max-md:break-all">@western_mechatronic</span>
+                        <span className="break-normal">@western_mechatronic</span>
                     </figure>
                     <figure className="flex flex-row items-center sm:flex-row-centered">
                         <figure className="w-[4vw] h-[4vw] sm:w-[1.5vw] sm:h-[1.5vw] relative overflow-hidden mr-2">
@@ -64,7 +64,7 @@ const Footer = () => {
                                 fill
                             />
                         </figure>
-                        <span className="max-md:break-all">@westernmechatronics</span>
+                        <span className="break-normal">@westernmechatronics</span>
                     </figure>
                 </div>
                 <div className="flex flex-col sm:items-start font-extralight text-base lg:text-xl sm:gap-6 sm:mr-12 mb-10 w-3/4 sm:w-1/4">
@@ -89,7 +89,7 @@ const Footer = () => {
                                 fill
                             />
                         </figure>
-                        <span className="max-md:break-all">Star the repo :{")"}</span>
+                        <span className="break-normal">Star the repo :{")"}</span>
                     </span>
                 </div>
             </div>
