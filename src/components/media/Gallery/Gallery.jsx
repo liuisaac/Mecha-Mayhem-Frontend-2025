@@ -13,8 +13,7 @@ const Gallery = () => {
     const [modalImage, setModalImage] = useState(null);
 
     useEffect(() => {
-        setPhotos([{url: "/odellcatch.jpg"}, {url: "/gwilsoncatch.jpeg"}, {url: "/jaredmccain.jpg"}]);
-        // fetchPhotos();
+        fetchPhotos();
     }, []);
 
     const fetchPhotos = async () => {
@@ -28,6 +27,7 @@ const Gallery = () => {
             const photoData = res.data.map((photo) => ({
                 ...photo, // Keep existing properties
                 url: `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/photos/gallery/${photo.url}`, // Construct full URL
+                name: `${photo.url}`
             }));
 
             console.log(photoData);
@@ -55,22 +55,38 @@ const Gallery = () => {
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }, [modalImage?.url]);
+    }, [modalImage]);
 
-    const moveImage = (isLeft) => {
-        // set modalImage to be the image before / after current in photos array based if left or right array was selected
-        const currentIndex = photos.findIndex((photo) => photo.url === modalImage?.url);
-        console.log("Current Index: " + currentIndex);
-        const nextIndex = currentIndex + (isLeft == true ? -1 : 1);
-        console.log("Next Index: " + nextIndex);
+    // index of zoomed in photo in photos array
+    const indexOfModalPhoto = modalImage && photos.findIndex((photo) => photo.url === modalImage.url);
 
-        if (currentIndex >= 0 && nextIndex < photos.length) {
-            setModalImage(photos[nextIndex]);
+    // controls if left/right arrows are displayed based on position in photos array
+    const hasPrevImage = modalImage && indexOfModalPhoto > 0;
+    const hasNextImage = modalImage && indexOfModalPhoto < photos.length - 1;
+
+    // handles photo download
+    const handleDownload = async () => {
+        try {
+            const response = await axios.get(modalImage.url, {
+                responseType: "blob",
+            });
+
+            // create temp url that points to blob object in browser memory ("pointer to Blob" in memory)
+            const href = URL.createObjectURL(response.data);
+
+            // create "a" HTML element with href to file and click
+            const link = document.createElement("a");
+            link.href = href;
+            link.download = modalImage.name;
+            link.click();
+
+            // clean up "a" element & remove ObjectURL
+            document.body.removeChild(link);
+            URL.revokeObjectURL(href);
+        } catch (error) {
+            console.log(`Error downloading image: ${modalImage.url}`);
         }
     };
-
-    const isLeftImage = modalImage && photos.findIndex((photo) => photo.url === modalImage?.url) > 0;
-    const isRightImage = modalImage && photos.findIndex((photo) => photo.url === modalImage?.url) < photos.length - 1;
 
     return (
         <div className="flex-col-centered z-10 mt-20 bg-black relative">
@@ -96,18 +112,16 @@ const Gallery = () => {
             {
                 modalImage && (
                     <div className="fixed top-10 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center z-20">
-                        <div className="flex w-full justify-end mr-40 b-5">
-                            <DownloadIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 mr-1" fontSize="large">
-                            </DownloadIcon>
-                            <CloseIcon className=" hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={closeModalImage}>
-                            </CloseIcon>
+                        <div className="flex w-full justify-end mr-40 b-5 mb-3">
+                            <DownloadIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 mr-1" fontSize="large" onClick={handleDownload}/>
+                            <CloseIcon className=" hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={closeModalImage}/>
                         </div>
                         <div className="flex flex-row h-3/4 relative w-full">
                             {
-                                isLeftImage && 
+                                hasPrevImage && 
                                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 sm:w-40">
-                                    <ArrowBackIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={() => moveImage(true)}>
-                                    </ArrowBackIcon>
+                                    {/* set modalImage to be the image before current in photos array based if previous arrow is selected */}
+                                    <ArrowBackIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto - 1])}/>
                                 </div>
                             }
                             <div className="flex justify-center w-full">
@@ -121,10 +135,10 @@ const Gallery = () => {
                                 />
                             </div>
                             {
-                                isRightImage && 
+                                hasNextImage && 
                                 <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 sm:w-40">
-                                    <ArrowForwardIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={() => moveImage(false)}>
-                                    </ArrowForwardIcon>
+                                    {/* set modalImage to be the image after current in photos array based if next arrow is selected */}
+                                    <ArrowForwardIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto + 1])}/>
                                 </div>
                             }
                         </div>
