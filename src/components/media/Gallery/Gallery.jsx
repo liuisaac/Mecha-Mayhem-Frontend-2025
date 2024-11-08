@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import CloseIcon from '@mui/icons-material/Close';
-import DownloadIcon from '@mui/icons-material/Download';
+import Button from '@mui/material/Button';
 
 const Gallery = () => {    
     const [photos, setPhotos] = useState([]);
@@ -65,9 +64,9 @@ const Gallery = () => {
     const hasNextImage = modalImage && indexOfModalPhoto < photos.length - 1;
 
     // handles photo download
-    const handleDownload = async () => {
+    const handleDownload = async (photo) => {
         try {
-            const response = await axios.get(modalImage.url, {
+            const response = await axios.get(photo.url, {
                 responseType: "blob",
             });
 
@@ -77,14 +76,14 @@ const Gallery = () => {
             // create "a" HTML element with href to file and click
             const link = document.createElement("a");
             link.href = href;
-            link.download = modalImage.name;
+            link.download = photo.name;
             link.click();
 
             // clean up "a" element & remove ObjectURL
             document.body.removeChild(link);
             URL.revokeObjectURL(href);
         } catch (error) {
-            console.log(`Error downloading image: ${modalImage.url}`);
+            console.log(`Error downloading image: ${photo.url}`);
         }
     };
 
@@ -112,11 +111,19 @@ const Gallery = () => {
             {
                 modalImage && (
                     <div className="fixed top-10 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center z-20">
-                        <div className="flex w-full justify-end mr-40 b-5 mb-3">
-                            <DownloadIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 mr-1" fontSize="large" onClick={handleDownload}/>
-                            <CloseIcon className=" hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={closeModalImage}/>
+                        <div className="flex w-full justify-end mr-10 sm:mr-40 b-5 mb-3">
+                            <Button className="hover:text-gray-900 active:text-gray-700 cursor-pointer transition-colors duration-200 mr-3" 
+                                variant="contained" 
+                                sx={{backgroundColor: 'white',color: 'black','&:hover': {backgroundColor: '#B2BEB5'}, '&:active': {backgroundColor: '#A9A9A9'}}} 
+                                onClick={() => handleDownload(modalImage)}>Download
+                            </Button>
+                            <Button className=" hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" 
+                                variant="contained"
+                                sx={{backgroundColor: 'white',color: 'black','&:hover': {backgroundColor: '#B2BEB5'}, '&:active': {backgroundColor: '#A9A9A9'}}} 
+                                onClick={closeModalImage}>Close
+                            </Button>
                         </div>
-                        <div className="flex flex-row h-3/4 relative w-full">
+                        <div className="flex flex-col sm:flex-row xl:h-3/4 relative w-full">
                             {
                                 hasPrevImage && 
                                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 sm:w-40">
@@ -126,9 +133,10 @@ const Gallery = () => {
                             }
                             <div className="flex justify-center w-full">
                                 <Image
+                                    className="w-[75%] sm:w-[65%] md:w-[70%] xl:w-full"
                                     src={modalImage.url} 
                                     alt="zoomed-image"
-                                    style={{ objectFit: "cover" }}
+                                    style={{ objectFit: "contain" }}
                                     unoptimized
                                     width={900}
                                     height={700}
