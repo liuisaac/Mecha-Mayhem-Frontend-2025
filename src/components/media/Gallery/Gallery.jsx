@@ -126,7 +126,7 @@ const Gallery = () => {
                             }
                             <div className="flex flex-col items-center justify-center rounded-sm">
                                 <Image
-                                    className="w-[85%] sm:w-[85%] md:w-[80%] lg:w-[80%] xl:w-[85%]"
+                                    className="w-[85%] sm:w-[85%] md:w-[80%] lg:w-[80%] xl:w-[75%]"
                                     src={modalImage.url} 
                                     alt="zoomed-image"
                                     style={{ objectFit: "contain" }}
