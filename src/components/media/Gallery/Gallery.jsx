@@ -50,9 +50,9 @@ const Gallery = () => {
     };    
 
     useEffect(() => {
-        document.body.style.overflow = modalImage ? 'hidden' : 'unset';
+        document.body.style.overflow = modalImage ? 'hidden' : 'visible';
         return () => {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = 'visible';
         };
     }, [modalImage]);
 
@@ -110,30 +110,23 @@ const Gallery = () => {
             </div>
             {
                 modalImage && (
-                    <div className="fixed top-10 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center z-20">
-                        <div className="flex w-full justify-end mr-10 sm:mr-40 b-5 mb-3">
-                            <Button className="hover:text-gray-900 active:text-gray-700 cursor-pointer transition-colors duration-200 mr-3" 
-                                variant="contained" 
-                                sx={{backgroundColor: 'white',color: 'black','&:hover': {backgroundColor: '#B2BEB5'}, '&:active': {backgroundColor: '#A9A9A9'}}} 
-                                onClick={() => handleDownload(modalImage)}>Download
-                            </Button>
-                            <Button className=" hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" 
-                                variant="contained"
-                                sx={{backgroundColor: 'white',color: 'black','&:hover': {backgroundColor: '#B2BEB5'}, '&:active': {backgroundColor: '#A9A9A9'}}} 
-                                onClick={closeModalImage}>Close
-                            </Button>
+                    <div className="fixed top-8 lg:top-10 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center z-20 mt-4 lg:mt-1 sm:mt-0">
+                        {/* For mobile view design */}
+                        <div className="lg:hidden flex items-center justify-center mb-10">
+                            {/* set modalImage to be the image before current in photos array based if previous arrow is selected */}
+                            {hasPrevImage && <ArrowBackIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 rotate-90" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto - 1])}/>}
                         </div>
-                        <div className="flex flex-col sm:flex-row xl:h-3/4 relative w-full">
+                        <div className="flex items-center justify-between relative h-[60vh] lg:h-[70vh] overflow-auto">
                             {
                                 hasPrevImage && 
-                                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 sm:w-40">
+                                <div className="hidden lg:visible lg:absolute lg:left-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full lg:mb-0">
                                     {/* set modalImage to be the image before current in photos array based if previous arrow is selected */}
-                                    <ArrowBackIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto - 1])}/>
+                                    <ArrowBackIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 sm:rotate-0" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto - 1])}/>
                                 </div>
                             }
-                            <div className="flex justify-center w-full">
+                            <div className="flex flex-col items-center justify-center rounded-sm">
                                 <Image
-                                    className="w-[75%] sm:w-[65%] md:w-[70%] xl:w-full"
+                                    className="w-[85%] sm:w-[85%] md:w-[80%] lg:w-[80%] xl:w-[85%]"
                                     src={modalImage.url} 
                                     alt="zoomed-image"
                                     style={{ objectFit: "contain" }}
@@ -141,14 +134,27 @@ const Gallery = () => {
                                     width={900}
                                     height={700}
                                 />
+                                <div className="flex">
+                                    <button className="sm:w-[10vw] w-[20vw] h-[4vh] bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex justify-center items-center rounded-sm mt-3 mr-3 text-black font-bebas lg:text-2xl text-xl" onClick={() => handleDownload(modalImage)}>
+                                        Download
+                                    </button>
+                                    <button className="sm:w-[10vw] w-[20vw] h-[4vh] bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex justify-center items-center rounded-sm mt-3 text-black font-bebas lg:text-2xl text-xl" onClick={closeModalImage}>
+                                        Close
+                                    </button>
+                                </div>
                             </div>
                             {
                                 hasNextImage && 
-                                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 sm:w-40">
+                                <div className="hidden lg:visible lg:absolute lg:right-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full mb-10">
                                     {/* set modalImage to be the image after current in photos array based if next arrow is selected */}
                                     <ArrowForwardIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto + 1])}/>
                                 </div>
                             }
+                        </div>
+                        {/* For mobile view design */}
+                        <div className="lg:hidden flex items-center justify-center mt-10">
+                            {/* set modalImage to be the image after current in photos array based if next arrow is selected */}
+                            {hasNextImage && <ArrowForwardIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 rotate-90" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto + 1])}/>}
                         </div>
                     </div>
                 )
