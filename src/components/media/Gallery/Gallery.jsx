@@ -3,11 +3,12 @@
 import axios from "axios";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Button from '@mui/material/Button';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import DownloadIcon from '@mui/icons-material/Download';
+import Button from "@mui/material/Button";
 
-const Gallery = () => {    
+const Gallery = () => {
     const [photos, setPhotos] = useState([]);
     const [modalImage, setModalImage] = useState(null);
 
@@ -26,7 +27,7 @@ const Gallery = () => {
             const photoData = res.data.map((photo) => ({
                 ...photo, // Keep existing properties
                 url: `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/photos/gallery/${photo.url}`, // Construct full URL
-                name: `${photo.url}`
+                name: `${photo.url}`,
             }));
 
             console.log(photoData);
@@ -47,17 +48,18 @@ const Gallery = () => {
     // Function to close zoomed image
     const closeModalImage = () => {
         setModalImage(null);
-    };    
+    };
 
     useEffect(() => {
-        document.body.style.overflow = modalImage ? 'hidden' : 'visible';
+        document.body.style.overflow = modalImage ? "hidden" : "visible";
         return () => {
-            document.body.style.overflow = 'visible';
+            document.body.style.overflow = "visible";
         };
     }, [modalImage]);
 
     // index of zoomed in photo in photos array
-    const indexOfModalPhoto = modalImage && photos.findIndex((photo) => photo.url === modalImage.url);
+    const indexOfModalPhoto =
+        modalImage && photos.findIndex((photo) => photo.url === modalImage.url);
 
     // controls if left/right arrows are displayed based on position in photos array
     const hasPrevImage = modalImage && indexOfModalPhoto > 0;
@@ -94,8 +96,11 @@ const Gallery = () => {
             </h1>
             <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 w-[80vw] gap-5 border-t-2 border-white pt-16 mb-5">
                 {photos.map((photo, index) => (
-                    <figure className="flex-row-start">
-                        <div key={index} onClick={() => openModalImage(photo)} className="relative w-full 2xl:h-[20vw] lg:h-[40vh] sm:h-[60vh] h-[80vw] hover:scale-105 transition duration-400 ease-in-out rounded-sm">
+                    <figure key={index} className="flex-row-start">
+                        <div
+                            onClick={() => openModalImage(photo)}
+                            className="relative w-full 2xl:h-[20vw] lg:h-[40vh] sm:h-[60vh] h-[80vw] hover:scale-105 transition duration-400 ease-in-out rounded-sm hover:cursor-pointer"
+                        >
                             <Image
                                 src={photo.url}
                                 alt="Image not found"
@@ -108,26 +113,48 @@ const Gallery = () => {
                     </figure>
                 ))}
             </div>
-            {
-                modalImage && (
-                    <div className="fixed top-8 lg:top-10 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center z-20 mt-4 lg:mt-1 sm:mt-0">
+            {modalImage && (
+                <div
+                    className="fixed top-8 lg:top-10 w-full h-full bg-black bg-opacity-75 flex flex-col items-center justify-center z-20 mt-4 lg:mt-1 sm:mt-0"
+                    onClick={closeModalImage} // Close modal on click outside
+                >
+                    {/* Modal content wrapper with stopPropagation to prevent closing when clicking inside */}
+                    <div
+                        className="flex flex-col items-center justify-center relative"
+                        onClick={(e) => e.stopPropagation()} // Prevent click from closing when clicking inside modal
+                    >
                         {/* For mobile view design */}
                         <div className="lg:hidden flex items-center justify-center mb-10">
-                            {/* set modalImage to be the image before current in photos array based if previous arrow is selected */}
-                            {hasPrevImage && <ArrowBackIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 rotate-90" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto - 1])}/>}
+                            {hasPrevImage && (
+                                <ArrowBackIcon
+                                    className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 rotate-90"
+                                    fontSize="large"
+                                    onClick={() =>
+                                        setModalImage(
+                                            photos[indexOfModalPhoto - 1]
+                                        )
+                                    }
+                                />
+                            )}
                         </div>
                         <div className="flex items-center justify-between relative h-[60vh] lg:h-[70vh] overflow-auto">
-                            {
-                                hasPrevImage && 
+                            {hasPrevImage && (
                                 <div className="hidden lg:visible lg:absolute lg:left-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full lg:mb-0">
-                                    {/* set modalImage to be the image before current in photos array based if previous arrow is selected */}
-                                    <ArrowBackIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 sm:rotate-0" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto - 1])}/>
+                                    <ArrowBackIcon
+                                        className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 sm:rotate-0"
+                                        fontSize="large"
+                                        onClick={() =>
+                                            setModalImage(
+                                                photos[indexOfModalPhoto - 1]
+                                            )
+                                        }
+                                    />
                                 </div>
-                            }
+                            )}
                             <div className="flex flex-col items-center justify-center rounded-sm">
                                 <Image
-                                    className="w-[85%] sm:w-[85%] md:w-[80%] lg:w-[80%] xl:w-[75%]"
-                                    src={modalImage.url} 
+                                    className="h-[85%] sm:h-[85%] md:w-[80%] lg:h-[80%] xl:h-[75%]"
+                                    src={modalImage.url}
                                     alt="zoomed-image"
                                     style={{ objectFit: "contain" }}
                                     unoptimized
@@ -135,30 +162,46 @@ const Gallery = () => {
                                     height={700}
                                 />
                                 <div className="flex">
-                                    <button className="sm:w-[10vw] w-[20vw] h-[4vh] bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex justify-center items-center rounded-sm mt-3 mr-3 text-black font-bebas lg:text-2xl text-xl" onClick={() => handleDownload(modalImage)}>
-                                        Download
-                                    </button>
-                                    <button className="sm:w-[10vw] w-[20vw] h-[4vh] bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex justify-center items-center rounded-sm mt-3 text-black font-bebas lg:text-2xl text-xl" onClick={closeModalImage}>
-                                        Close
+                                    <button
+                                        className="sm:w-64 w-[10vw] h-10 bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex justify-center items-center rounded-sm mt-3 text-black font-bebas lg:text-2xl text-xl gap-2 pr-2"
+                                        onClick={() =>
+                                            handleDownload(modalImage)
+                                        }
+                                    >
+                                        <DownloadIcon /> Download
                                     </button>
                                 </div>
                             </div>
-                            {
-                                hasNextImage && 
+                            {hasNextImage && (
                                 <div className="hidden lg:visible lg:absolute lg:right-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full mb-10">
-                                    {/* set modalImage to be the image after current in photos array based if next arrow is selected */}
-                                    <ArrowForwardIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto + 1])}/>
+                                    <ArrowForwardIcon
+                                        className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200"
+                                        fontSize="large"
+                                        onClick={() =>
+                                            setModalImage(
+                                                photos[indexOfModalPhoto + 1]
+                                            )
+                                        }
+                                    />
                                 </div>
-                            }
+                            )}
                         </div>
-                        {/* For mobile view design */}
                         <div className="lg:hidden flex items-center justify-center mt-10">
-                            {/* set modalImage to be the image after current in photos array based if next arrow is selected */}
-                            {hasNextImage && <ArrowForwardIcon className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 rotate-90" fontSize="large" onClick={() => setModalImage(photos[indexOfModalPhoto + 1])}/>}
+                            {hasNextImage && (
+                                <ArrowForwardIcon
+                                    className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 rotate-90"
+                                    fontSize="large"
+                                    onClick={() =>
+                                        setModalImage(
+                                            photos[indexOfModalPhoto + 1]
+                                        )
+                                    }
+                                />
+                            )}
                         </div>
                     </div>
-                )
-            } 
+                </div>
+            )}
         </div>
     );
 };
