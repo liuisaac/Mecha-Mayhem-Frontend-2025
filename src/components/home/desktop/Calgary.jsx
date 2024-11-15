@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Calgary_Mobile from "../mobile/Calgary-Mobile";
 import Link from "next/link";
+import Button from "../../Button";
 
 const Calgary = () => {
     return (
@@ -54,14 +55,13 @@ const Calgary = () => {
                     </div>
 
                     <div className="flex flex-col items-center sm:items-start">
-                        <Link
+                        <Button
                             href="https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-V5RC-24-5504.html#general-info"
-                            className="sm:w-[30vw] w-[80vw] sm:ml-20 h-[10vh] bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex-row-centered rounded-sm sm:-mt-10 mt-10"
+                            className="w-[30vw] ml-20 h-[10vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20"
+                            textClassName="w-full mt-2 text-center text-5xl z-10 font-bebas text-black hover:text-black transition duration-1000 ease-in-out"
                         >
-                            <h2 className="w-full mt-2 text-center text-5xl z-10 font-bebas text-black hover:text-black transition duration-1000 ease-in-out">
-                                REGISTER TODAY
-                            </h2>
-                        </Link>
+                            REGISTER TODAY
+                        </Button>
 
                         <p className="sm:w-[30vw] w-[80vw]flex-row-centered sm:ml-20 mt-4 text-sm">
                             Registration closes Oct 13

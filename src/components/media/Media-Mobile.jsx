@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Backdrop from "../home/hero/Backdrop";
 import Link from "next/link";
+import Button from "../Button";
 
 const Media_Mobile = () => {
     return (
@@ -24,22 +25,16 @@ const Media_Mobile = () => {
                     fill
                 />
             </div>
-
-            <button className="sm:w-[50vw] w-[70vw] h-[8vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-4">
-                <figure className="flex-row-start">
-                    <div className="relative w-10 h-10">
-                        <Image
-                            src="/media/driveico.svg"
-                            alt="mecha mayhem logo"
-                            style={{ objectFit: "contain" }}
-                            fill
-                        />
-                    </div>
-                </figure>
-                <Link href="https://photos.app.goo.gl/7tMPBiM4B5AyAJe17" className="flex-row-centered ml-5 h-full text-center sm:text-4xl text-3xl z-10 font-bebas mt-1 text-black hover:text-black transition duration-1000 ease-in-out">
-                    OPEN DRIVE FOLDER
-                </Link>
-            </button>
+            <Button
+                href="https://photos.app.goo.gl/7tMPBiM4B5AyAJe17"
+                className="sm:w-[50vw] w-[70vw] h-[8vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-4"
+                iconClassName="flex-row-start relative w-10 h-10"
+                src="/media/driveico.svg"
+                alt="mecha mayhem logo"
+                textClassName="flex-row-centered ml-5 h-full text-center sm:text-4xl text-3xl z-10 font-bebas mt-1 text-black hover:text-black transition duration-1000 ease-in-out"
+            >
+                OPEN DRIVE FOLDER
+            </Button>
         </section>
     );
 };
