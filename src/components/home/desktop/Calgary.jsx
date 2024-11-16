@@ -44,7 +44,7 @@ const MobileButton = () => {
 const Calgary = () => {
     return (
         <>
-            <div className="flex flex-wrap relative w-screen sm:h-[130vh] h-[100vh] bg-transparent sm:mt-[40vh] sm:items-start mt-[20vh] pb-20 text-white flex-col items-center justify-start overflow-hidden">
+            <div className="flex flex-wrap relative w-screen sm:h-[100vh] h-[100vh] bg-transparent sm:mt-[40vh] sm:items-start mt-[20vh] text-white flex-col items-center justify-start overflow-hidden">
                 <header className="hidden sm:flex text-8xl z-10 ml-16 font-saira">
                     WELCOME TO CALGARY.
                 </header>
@@ -80,7 +80,7 @@ const Calgary = () => {
                                 <RegisterButton />
                             </p>
 
-                            <div className="w-[80vw] sm:w-[40vw] sm:h-[25vw] h-[45vw] border-2 border-white mt-[5vw] xl:ml-72 sm:ml-40">
+                            <div className="w-[80vw] sm:w-[40vw] sm:h-[25vw] h-[45vw] border-2 border-white mt-10 xl:ml-72 sm:ml-40">
                                 <iframe
                                     src="https://www.youtube.com/embed/e-PBs0b2zsc"
                                     frameBorder="0"
