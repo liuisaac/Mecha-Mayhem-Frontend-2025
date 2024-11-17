@@ -283,7 +283,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <Button
-                    href="/register"
+                    href="https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-V5RC-24-5504.html#general-info"
                     className="sm:w-[30vw] w-[80vw] h-15 bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm "
                     textClassName="w-full my-2 text-center text-3xl z-10 font-bebas text-black hover:text-black transition duration-1000 ease-in-out"
                 >
