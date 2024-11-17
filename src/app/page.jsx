@@ -9,7 +9,7 @@ const Venue = dynamic(() => import("@/components/home/desktop/Venue"), { ssr: fa
 
 export default function Home() {
     return (
-        <main className="relative w-screen bg-black">
+        <main className="relative w-screen bg-black overflow-x-hidden">
             <Waves />
             <Hero />   
             <Calgary />
