@@ -250,19 +250,19 @@ const Navbar = () => {
                         />
                         <div className="w-full flex flex-col justify-between items-start h-[20vh]">
                             <SmallLinkAndIcon
-                                title="All Streams"
+                                title="Coming soon"
                                 url="/nav/mobile_icons/ext_link.svg"
                             />
                             <SmallLinkAndIcon
-                                title="All Streams"
+                                title="Coming soon"
                                 url="/nav/mobile_icons/ext_link.svg"
                             />
                             <SmallLinkAndIcon
-                                title="All Streams"
+                                title="Coming soon"
                                 url="/nav/mobile_icons/ext_link.svg"
                             />
                             <SmallLinkAndIcon
-                                title="All Streams"
+                                title="Coming soon"
                                 url="/nav/mobile_icons/ext_link.svg"
                             />
                         </div>
