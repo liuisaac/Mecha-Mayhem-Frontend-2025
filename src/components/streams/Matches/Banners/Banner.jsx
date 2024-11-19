@@ -10,10 +10,10 @@ const Banner = ({ year, div, type }) => {
     }
     return (
         <div className="w-full h-36 bg-transparent text-white text-4xl flex-col-centered font-lexend pl-[15vw]">
-            <span className="flex-col-centered">
+            <div className="flex-col-centered">
                 <h1 className="font-bold">{div.toUpperCase()} {year}</h1>
                 <h2 className="inline text-[#d3d3d3] text-2xl">{toTitleCase(type)} Matches</h2>
-            </span>
+            </div>
         </div>
     );
 };

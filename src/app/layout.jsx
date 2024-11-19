@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body
-                className={`${lexend.variable} ${saira.variable} ${bebas.variable} tracking-tight bg-black hide-scrollbar text-white w-screen overflow-x-hidden`}
+                className={`${lexend.variable} ${saira.variable} ${bebas.variable} tracking-tight bg-black hide-scrollbar text-white w-[100vw] overflow-x-hidden`}
             >
                 <Navbar />
                 {children}
