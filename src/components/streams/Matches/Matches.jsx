@@ -7,7 +7,7 @@ import Banner from "./Banners/Banner";
 
 const Matches = () => {
     const [matches, setMatches] = useState([]);
-    const [currPage, setCurrPage] = useState(1); // current page number
+    const [currentPage, setCurrentPage] = useState(1); // current page number
     const [triggerNextPage, setTriggerNextPage] = useState(true); // boolean whether we should get matches for next page
     const [currentRoundIndex, setCurrentRoundIndex] = useState(0); // index of whichever round we're on now
     const [wasLastMatches, setWasLastMatches] = useState(false); // indicating whether we've retrieved all the matches 
@@ -18,8 +18,8 @@ const Matches = () => {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/matches/2024/prairies`, 
             {
-                currentPage: currPage,
-                currentRoundIndex: currentRoundIndex
+                currentPage,
+                currentRoundIndex
             }
         );
 
@@ -30,7 +30,7 @@ const Matches = () => {
 
         setMatches([...matches, ...response.data.data]);
         setCurrentRoundIndex(response.data.nextRoundIndex);
-        setCurrPage(response.data.nextPage);
+        setCurrentPage(response.data.nextPage);
     }
 
     useEffect(() => { 
