@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-
 import General from "./General";
 import Maps from "./Maps";
 import FAQ from "./FAQ";
+import Button from "../Button";
 
 const Info = () => {
     return (
@@ -18,21 +18,16 @@ const Info = () => {
                             Discover Canada’s Largest Robotics Showdown hosted
                             in the heart of Calgary
                         </p>
-                        <button className="w-[27vw] h-[10vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20">
-                            <figure className="flex-row-start">
-                                <div className="relative w-12 h-12">
-                                    <Image
-                                        src="/info/navico.svg"
-                                        alt="mecha mayhem logo"
-                                        style={{ objectFit: "contain" }}
-                                        fill
-                                    />
-                                </div>
-                            </figure>
-                            <h2 className="ml-2 h-full text-center text-5xl z-10 font-bebas mt-12 text-black hover:text-black transition duration-1000 ease-in-out">
-                                VIEW VENUE MAPS
-                            </h2>
-                        </button>
+                        <Button
+                            href=""
+                            className="w-[27vw] h-[10vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20"
+                            iconClassName="flex-row-start relative w-12 h-12"
+                            src="/info/navico.svg"
+                            alt="mecha mayhem logo"
+                            textClassName="ml-2 h-full text-center text-5xl z-10 font-bebas mt-12 text-black hover:text-black transition duration-1000 ease-in-out"
+                        >
+                            VIEW VENUE MAPS
+                        </Button>
                     </div>
                 </aside>
 

@@ -2,11 +2,10 @@
 
 import axios from "axios";
 import Image from "next/image";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DownloadIcon from '@mui/icons-material/Download';
-import Button from "@mui/material/Button";
 
 const Gallery = () => {
     const [photos, setPhotos] = useState([]);
@@ -137,9 +136,9 @@ const Gallery = () => {
                                 />
                             )}
                         </div>
-                        <div className="flex items-center justify-between relative h-[60vh] lg:h-[70vh] overflow-auto">
+                        <div className="flex items-center justify-between relative h-[45vh] sm:h-[55vh] lg:h-[70vh] overflow-auto">
                             {hasPrevImage && (
-                                <div className="hidden lg:visible lg:absolute lg:left-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full lg:mb-0">
+                                <div className="hidden lg:absolute lg:left-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full lg:mb-0">
                                     <ArrowBackIcon
                                         className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200 sm:rotate-0"
                                         fontSize="large"
@@ -163,7 +162,7 @@ const Gallery = () => {
                                 />
                                 <div className="flex">
                                     <button
-                                        className="sm:w-64 w-[10vw] h-10 bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex justify-center items-center rounded-sm mt-3 text-black font-bebas lg:text-2xl text-xl gap-2 pr-2"
+                                        className="sm:w-64 w-[30vw] h-10 bg-[#E31F2B] hover:bg-white transition duration-100 ease-in-out group flex justify-center items-center rounded-sm mt-3 text-black font-bebas lg:text-2xl text-xl gap-2"
                                         onClick={() =>
                                             handleDownload(modalImage)
                                         }
@@ -173,7 +172,7 @@ const Gallery = () => {
                                 </div>
                             </div>
                             {hasNextImage && (
-                                <div className="hidden lg:visible lg:absolute lg:right-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full mb-10">
+                                <div className="hidden lg:absolute lg:right-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:flex lg:items-center lg:justify-center lg:h-full mb-10">
                                     <ArrowForwardIcon
                                         className="hover:text-gray-500 active:text-gray-700 cursor-pointer transition-colors duration-200"
                                         fontSize="large"
