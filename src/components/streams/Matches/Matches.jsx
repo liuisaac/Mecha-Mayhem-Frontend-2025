@@ -18,12 +18,12 @@ const Matches = () => {
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/matches/2024/prairies`, 
             {
-                "currentPage": currPage,
-                "currentRoundIndex": currentRoundIndex
+                currentPage: currPage,
+                currentRoundIndex: currentRoundIndex
             }
         );
 
-        // Finished fetching data
+        // Checking if user has finished fetching data
         if (response.data.reachedEndOfMatches) {
             setWasLastMatches(true);
         }
