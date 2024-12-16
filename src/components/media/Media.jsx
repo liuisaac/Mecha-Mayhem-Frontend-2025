@@ -22,14 +22,13 @@ const Media = () => {
                             and our community.
                         </p>
                         <Button
-                            href="https://photos.app.goo.gl/7tMPBiM4B5AyAJe17"
+                            href="https://www.flickr.com/photos/mercmediateam/albums/72177720314562049"
                             className="2xl:w-[27vw] 2xl:h-[10vh] lg:w-[30vw] lg:h-[8vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20"
                             iconClassName="flex-row-start relative w-12 h-12"
-                            src="/media/driveico.svg"
                             alt="mecha mayhem logo"
-                            textClassName="flex-row-centered ml-5 h-full text-center 2xl:text-5xl lg:text-4xl z-10 font-bebas mt-2  text-black hover:text-black transition duration-1000 ease-in-out"
+                            textClassName="flex-row-centered h-full text-center 2xl:text-5xl lg:text-4xl z-10 font-bebas mt-2  text-black hover:text-black transition duration-1000 ease-in-out"
                         >
-                            OPEN DRIVE FOLDER
+                            SEE IMAGES
                         </Button>
                     </div>
                 </aside>
