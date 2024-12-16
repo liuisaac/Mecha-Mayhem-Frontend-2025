@@ -3,7 +3,7 @@ import React from "react";
 const Waves = () => {
     return (
         <figure className="w-screen overflow-hidden">
-            <div className="absolute top-0 left-0 opacity-20 w-[100vw] overflow-x-hidden h-[120vh] pointer-events-none hidden sm:block">
+            <div className="absolute top-0 left-0 opacity-20 w-[100vw] overflow-x-hidden h-[100vh] pointer-events-none hidden sm:block">
                 <video
                     className="w-screen h-[120vh]"
                     muted
