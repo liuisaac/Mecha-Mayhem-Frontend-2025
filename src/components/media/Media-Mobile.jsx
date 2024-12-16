@@ -26,14 +26,13 @@ const Media_Mobile = () => {
                 />
             </div>
             <Button
-                href="https://photos.app.goo.gl/7tMPBiM4B5AyAJe17"
+                href="https://www.flickr.com/photos/mercmediateam/albums/72177720314562049"
                 className="sm:w-[50vw] w-[70vw] h-[8vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-4"
                 iconClassName="flex-row-start relative w-10 h-10"
-                src="/media/driveico.svg"
                 alt="mecha mayhem logo"
-                textClassName="flex-row-centered ml-5 h-full text-center sm:text-4xl text-3xl z-10 font-bebas mt-1 text-black hover:text-black transition duration-1000 ease-in-out"
+                textClassName="flex-row-centered h-full text-center sm:text-4xl text-3xl z-10 font-bebas mt-1 text-black hover:text-black transition duration-1000 ease-in-out"
             >
-                OPEN DRIVE FOLDER
+                SEE IMAGES
             </Button>
         </section>
     );
