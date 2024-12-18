@@ -7,50 +7,52 @@ import Banner from "./Banners/Banner";
 
 const Matches = () => {
     const [matches, setMatches] = useState([]);
-    const eventSourceRef = useRef(null);
+    const [currentPage, setCurrentPage] = useState(1); // current page number
+    const [triggerNextPage, setTriggerNextPage] = useState(true); // boolean whether we should get matches for next page
+    const [currentRoundIndex, setCurrentRoundIndex] = useState(0); // index of whichever round we're on now
+    const [wasLastMatches, setWasLastMatches] = useState(false); // indicating whether we've retrieved all the matches 
+    const paginationRef = useRef(); // for determining if we are at the last element
+    
+    // function to get the matches
+    const fetchData = async () => {
+        const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/matches/2024/prairies`, 
+            {
+                currentPage,
+                currentRoundIndex
+            }
+        );
 
-    useEffect(() => {
-        console.log("Component mounted");
-        setMatches([]);
-
-        // Check if the EventSource has already been created
-        if (!eventSourceRef.current) {
-            console.log("Creating a new EventSource connection...");
-            eventSourceRef.current = new EventSource(
-                `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/matches/2024/prairies`
-            );
-
-            eventSourceRef.current.onmessage = (event) => {
-                try {
-                    const match = JSON.parse(event.data);
-                    setMatches((prevMatches) => [...prevMatches, match]);
-                } catch (error) {
-                    console.error("Error parsing match data", error);
-                }
-            };
-
-            eventSourceRef.current.onerror = (event) => {
-                console.error("SSE Error:", event);
-                if (event.target.readyState === EventSource.CLOSED) {
-                    console.log("Connection closed");
-                } else {
-                    eventSourceRef.current.close();
-                }
-            };
+        // Checking if user has finished fetching data
+        if (response.data.reachedEndOfMatches) {
+            setWasLastMatches(true);
         }
 
-        return () => {
-            console.log("Component unmounted");
-            if (eventSourceRef.current) {
-                eventSourceRef.current.close();
-                eventSourceRef.current = null;
-                console.log(matches);
+        setMatches([...matches, ...response.data.data]);
+        setCurrentRoundIndex(response.data.nextRoundIndex);
+        setCurrentPage(response.data.nextPage);
+    }
+
+    useEffect(() => { 
+        // only fetch next matches if user has scrolled to end of current page and not retrieved the last matches
+        if (triggerNextPage && !wasLastMatches) {
+            fetchData();
+            setTriggerNextPage(false);
+        }
+    }, [triggerNextPage]);
+
+    // determines when user has scrolled to last match on current page
+    const onScroll = () => {
+        if (paginationRef.current) {
+            const { scrollTop, scrollHeight, clientHeight } = paginationRef.current;
+            if (scrollTop + clientHeight === scrollHeight) {
+                setTriggerNextPage(true);
             }
-        };
-    }, []); // Empty dependency array ensures this runs only once
+        }
+    }
 
     return (
-        <div className="bg-[#0F1519] w-full z-10 pt-20 flex-col-centered gap-1">
+        <div className="bg-[#0F1519] fixed top-0 w-full z-10 pt-20 h-[100vh] overflow-auto flex flex-col gap-1" ref={paginationRef} onScroll={onScroll}>
             {matches.map((matchData, index) => {
                 return matchData.banner ? (
                     <Banner

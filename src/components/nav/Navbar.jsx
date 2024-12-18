@@ -108,7 +108,6 @@ const Navbar = () => {
         setActive(`/${String(location).split("/")[1]}`);
         console.log(String(location));
         if (whitelist.includes(String(location))) {
-            setHidable(false);
             console.log(whitelist.includes(String(location)));
         }
     }, [location]);
