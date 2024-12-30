@@ -2,6 +2,7 @@ import { Saira_Stencil_One, Bebas_Neue, Lexend_Deca } from "next/font/google";
 import Navbar from "@/components/nav/Navbar";
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
+import { AuthProvider } from "@/components/context/AuthContext";
 
 const lexend = Lexend_Deca({
     subsets: ["latin"],
@@ -33,9 +34,11 @@ export default function RootLayout({ children }) {
             <body
                 className={`${lexend.variable} ${saira.variable} ${bebas.variable} tracking-tight bg-black hide-scrollbar text-white w-[100vw] overflow-x-hidden`}
             >
-                <Navbar />
-                {children}
-                <Footer />
+                <AuthProvider>
+                    <Navbar />
+                    {children}
+                    <Footer />
+                </AuthProvider>
             </body>
         </html>
     );

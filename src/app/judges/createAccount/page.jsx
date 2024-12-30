@@ -1,11 +1,11 @@
 import Waves from "@/components/Waves";
-import {JudgesLogin} from "@/components/judges/Judges";
+import { JudgesForm } from "@/components/judges/JudgesLogin";
 
 const page = () => {
     return (
         <div className="bg-black relative">
             <Waves/>
-            <JudgesLogin/>
+            <JudgesForm isLogin={false}/>
         </div>
     );
 };
