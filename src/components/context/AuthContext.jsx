@@ -15,8 +15,8 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [pending, setPending] = useState(true);
   
-    const signup = (email, password, name) => {
-        return createUserWithEmailAndPassword(auth, email, password, name)
+    const signup = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
     };
   
     const login = (email, password) => {
