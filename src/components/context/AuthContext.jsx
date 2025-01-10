@@ -13,11 +13,6 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const [pending, setPending] = useState(true);
-  
-    const signup = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
-    };
   
     const login = (email, password) => {
      return signInWithEmailAndPassword(auth ,email, password)
@@ -31,39 +26,18 @@ export const AuthProvider = ({ children }) => {
       });
     };
   
-    const resetPassword = (email) => {
-      return sendPasswordResetEmail(auth, email)
-    };
-  
-    const updateEmail = (email) => {
-     return currentUser.updateEmail(email)
-    };
-  
-    const updatePassword = (password) => {
-      return currentUser.updatePassword(password)
-    };
-
     useEffect(() => {
      const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user)
-      setPending(false)
      });
      return unsubscribe
     }, []);
   
-    if(pending){
-      return <>Loading...</>
-    }
-    
     // passing the data/functions we want to share with other components to access as props
     const value = {
         currentUser,
         login,
-        signup,
         logout,
-        resetPassword,
-        updateEmail,
-        updatePassword
     };
 
     return (

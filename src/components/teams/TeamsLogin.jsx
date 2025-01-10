@@ -1,13 +1,15 @@
 "use client"
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { useTeamContext } from "../context/TeamsContext";
 
 export default function TeamsLogin() {
     const [teamID, setTeamID] = useState("");
     const [error, setError] = useState(undefined);
     const router = useRouter();
+    const { setTeamInfo } = useTeamContext();
 
     const handleSubmit = async (e) => {
         console.log(teamID);
@@ -16,9 +18,12 @@ export default function TeamsLogin() {
             const response = await axios.get(
                 `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/teams/get-selected-team/${teamID}`
             );
-            
             console.log(response);
-            router.push(`/teams/authenticated/${teamID}`);
+
+            // turn data into an array of objects to be used in the frontend
+            setTeamInfo(response.data);
+            
+            router.push(`/teams/authenticated/${response.data.number}`);
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 400) {

@@ -3,6 +3,7 @@ import Navbar from "@/components/nav/Navbar";
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
 import { AuthProvider } from "@/components/context/AuthContext";
+import { TeamProvider } from "@/components/context/TeamsContext";
 
 const lexend = Lexend_Deca({
     subsets: ["latin"],
@@ -35,9 +36,11 @@ export default function RootLayout({ children }) {
                 className={`${lexend.variable} ${saira.variable} ${bebas.variable} tracking-tight bg-black hide-scrollbar text-white w-[100vw] overflow-x-hidden`}
             >
                 <AuthProvider>
-                    <Navbar />
-                    {children}
-                    <Footer />
+                    <TeamProvider>
+                        <Navbar />
+                        {children}
+                        <Footer />
+                    </TeamProvider>
                 </AuthProvider>
             </body>
         </html>
