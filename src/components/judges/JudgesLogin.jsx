@@ -93,7 +93,6 @@ export function JudgesForm({isLogin}) {
 
                 <div className="flex flex-row items-start justify-center gap-x-3 pt-10">
                   <Button type="submit" sx={{backgroundColor: "white", color: "black", fontFamily: "font-saira"}}>Submit</Button>
-                  {/* <Button sx={{backgroundColor: "white", color: "black", fontFamily: "font-saira"}} onClick={() => router.push("/judges/createAccount")}>Create An Account</Button> */}
                 </div>
             </div>
         </form>

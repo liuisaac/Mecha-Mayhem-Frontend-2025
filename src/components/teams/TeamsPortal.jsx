@@ -59,7 +59,7 @@ export default function TeamsPortal() {
     } else {
         return teamInfo && (
             <>
-                 <div className="w-screen h-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend">
+                 <div className="w-screen h-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-20">
                     <div className="flex items-center justify-around bg-red-600 h-[15vw] w-full absolute top-0 gap-x-10">
                         {/* <Image
                             src="/icon.png"
@@ -70,8 +70,8 @@ export default function TeamsPortal() {
                         <div>
                             Image
                         </div>
-                        <div>
-                            Team Interview Status
+                        <div className="font-bold text-7xl">
+                            TEAMS PORTAL
                         </div>
                     </div>
                     <div className="flex flex-col items-center justify-center text-black w-full gap-y-5 text-3xl">
@@ -79,11 +79,11 @@ export default function TeamsPortal() {
                             Your team: <span className="font-bold">{teamInfo.number}</span>
                         </div>
                         <div>
-                            Your status: {teamInfo.status}
+                            Your status: {teamInfo.interviewComplete ? "INTERVIEW COMPLETE" : teamInfo.status}
                         </div>
                         <div className="flex flex-row items-center justify-center mt-10 gap-x-40">
-                            <Button onClick={() => handleClick("AWAY")} sx={{backgroundColor: "red", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AWAY</Button>
-                            <Button onClick={() => handleClick("AT PIT")} sx={{backgroundColor: "#32e355", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AT PIT</Button>
+                            <Button disabled={teamInfo.interviewComplete} onClick={() => handleClick("AWAY")} sx={{backgroundColor: "red", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AWAY</Button>
+                            <Button disabled={teamInfo.interviewComplete} onClick={() => handleClick("AT PIT")} sx={{backgroundColor: "#32e355", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AT PIT</Button>
                         </div>
                         <div className="flex flex-col font-bold gap-y-5">
                             <div>
@@ -92,6 +92,7 @@ export default function TeamsPortal() {
                             <div >
                                 Judging will happen anytime matches are running.
                             </div>
+                            {/* <Button onClick={() => router.push("/teams/login")} sx={{backgroundColor: "red", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>Sign Out</Button> */}
                         </div>
                     </div>
                 </div>
