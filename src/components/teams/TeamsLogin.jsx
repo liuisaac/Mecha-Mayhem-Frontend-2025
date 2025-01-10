@@ -39,8 +39,11 @@ export default function TeamsLogin() {
 
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center mt-10 relative overflow-auto">
+        <div className="w-screen h-screen flex flex-col items-center justify-center mt-10 relative overflow-auto">
             <form className="flex flex-col items-center justify-center w-[30%] h-[80%] bg-black" onSubmit={handleSubmit}>
+                {error && (
+                    <div className="text-danger text-red-500 mb-10">{error}</div>
+                )}
                 <input type="text" id="teamID" name="teamID" value={teamID} className="text-black border-2 border-gray-300 rounded w-[100%] p-2 h-10" placeholder="Please Enter Your Team's ID: " onChange={(e) => setTeamID(e.target.value)} required />
                 <Button type="submit" sx={{backgroundColor: "white", color: "black", fontFamily: "font-saira"}}>Submit</Button>
             </form>
