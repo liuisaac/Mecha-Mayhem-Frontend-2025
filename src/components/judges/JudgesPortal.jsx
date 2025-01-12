@@ -57,6 +57,14 @@ export const JudgesPortal = () => {
 
     useEffect(() => {
         fetchSelectedTeams();
+
+        // Set up an interval to fetch data every 30 seconds
+        const intervalId = setInterval(() => {
+            fetchSelectedTeams();
+        }, 10000); // 30 seconds
+
+        // Cleanup function to clear the interval when the component unmounts
+        return () => clearInterval(intervalId);
     }, []);
 
     const handleLogout = async () => {
@@ -70,15 +78,6 @@ export const JudgesPortal = () => {
     }
 
     const handleInterviewChange = async (teamID, newInterviewStatus, level) => {
-        // // updating state
-        // if (newInterviewStatus) {
-        //     // adding to state
-        //     setInterviewedTeams([...interviewedTeams, teamID]);
-        // } else {
-        //     // removing from state
-        //     setInterviewedTeams(interviewedTeams.filter(team => team.id !== teamID));
-        // }
-
         // updating state
         let updatedTeams = [];
         switch (level) {
@@ -118,6 +117,100 @@ export const JudgesPortal = () => {
         }
     };
 
+    const DivisionTable = ({divisionName, teams, handleInterviewChange, interviewComplete}) => {
+        const getStatusColor = (status) => {
+            switch (status) {
+                case "NOT RESPONDED":
+                    return "bg-gray-500";  
+                case "AWAY":
+                    return "bg-red-600"; 
+                case "AT PIT":
+                    return "bg-[#32e355]"; 
+                default:
+                    return "bg-gray-500";  // Default gray for unknown status
+            }
+        };
+
+        // teams with interviews not complete
+        if (!interviewComplete) {
+            return (
+                <div className="flex flex-col items-center w-[25vw]">
+                    <div className="top-2">{divisionName} Division</div>
+                    <div className="flex justify-between sticky w-full mt-5">
+                        <div className="flex-1 text-center font-bold">Team</div>
+                        <div className="flex-1 text-center font-bold">Status</div>
+                        <div className="flex-1 text-center font-bold">Interviewed</div>
+                    </div>
+                    <div className="overflow-y-auto max-h-[50vh] w-full">
+                        {teams.map(team => {
+                            if (!team.interviewComplete) {
+                                return (
+                                    <div className="flex justify-between w-full">
+                                        <div className="flex-1 text-center">{team.number}</div>
+                                        {/* <div className="flex-1 text-center">{team.status}</div> */}
+                                        <div className="flex-1 text-center">
+                                            <span 
+                                                className={`inline-block w-6 h-6 rounded-full ${getStatusColor(team.status)}`} 
+                                                title={`Status: ${team.status}`}
+                                            />
+                                        </div>
+                                        <div className="flex-1 text-center">
+                                            <input
+                                                type="checkbox"
+                                                checked={team.interviewComplete}
+                                                onChange={() => handleInterviewChange(team.id, !team.interviewComplete, divisionName)}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="flex flex-col items-center w-[25vw]">
+                    <div className="flex justify-between w-full mt-5">
+                        <div className="flex-1 text-center font-bold">Interviewed Teams</div>
+                    </div>
+                    {teams.map(team => {
+                            if (team.interviewComplete) {
+                                return (
+                                    <div className="flex justify-between w-full">
+                                        <div className="flex-1 text-center">{team.number}</div>
+                                        {/* <div className="flex-1 text-center">{team.status}</div> */}
+                                        <div className="flex-1 text-center">
+                                            <span 
+                                                className={`inline-block w-6 h-6 rounded-full ${getStatusColor(team.status)}`} 
+                                                title={`Status: ${team.status}`}
+                                            />
+                                        </div>
+                                        <div className="flex-1 text-center">
+                                            <input
+                                                type="checkbox"
+                                                checked={team.interviewComplete}
+                                                onChange={() => handleInterviewChange(team.id, !team.interviewComplete, divisionName)}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })}
+                </div>
+            )
+        }
+        
+    };
+
+    const divisions = [
+        { name: "MIDDLE SCHOOL", teams: middleSchoolTeams },
+        { name: "HIGH SCHOOL", teams: highSchoolTeams },
+        { name: "VEXU", teams: vexuTeams },
+    ];
+
     if (!currentUser) {
         return (
             <div className="w-screen h-screen flex items-center justify-center mt-10 relative overflow-auto">
@@ -129,7 +222,7 @@ export const JudgesPortal = () => {
         return (
             currentUser && (
                 <div className="w-screen h-[100vh] relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-20">
-                        <div className="flex items-center justify-around bg-red-600 h-[15vw] w-full absolute top-0 gap-x-10">
+                        <div className="flex items-center justify-around bg-red-600 h-[30vh] w-full absolute top-0 gap-x-10">
                             <div classname="relative w-[20vw] h-28">
                                 <Image
                                     src="/HexLogo.svg"
@@ -142,82 +235,32 @@ export const JudgesPortal = () => {
                                 JUDGES PORTAL
                             </div>
                         </div>
-                        <div className="flex flex-row items-center justify-center text-black w-full gap-x-40 text-xl">
-                            <div className="flex flex-col items-center w-[30vw]">
-                                <div>High School Division</div>
-                                <div className="flex justify-between w-full mt-5">
-                                    <div className="flex-1 text-center font-bold">Team</div>
-                                    <div className="flex-1 text-center font-bold">Status</div>
-                                    <div className="flex-1 text-center font-bold">Interviewed</div>
-                                </div>
-                                {highSchoolTeams.map(hsTeam => {
-                                    return (
-                                        <div className="flex justify-between w-full">
-                                            <div className="flex-1 text-center">{hsTeam.number}</div>
-                                            <div className="flex-1 text-center">{hsTeam.status}</div>
-                                            <div className="flex-1 text-center">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={hsTeam.interviewComplete}
-                                                    onChange={() => handleInterviewChange(hsTeam.id, !hsTeam.interviewComplete, "HIGH SCHOOL")}
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
-                                                />
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                            <div className="flex flex-col items-center w-[30vw]">
-                                <div>Middle School Division</div>
-                                <div className="flex justify-between w-full mt-5">
-                                    <div className="flex-1 text-center font-bold">Team</div>
-                                    <div className="flex-1 text-center font-bold">Status</div>
-                                    <div className="flex-1 text-center font-bold">Interviewed</div>
-                                </div>
-                                {middleSchoolTeams.map(msTeam => {
-                                    return (
-                                        <div className="flex justify-between w-full">
-                                            <div className="flex-1 text-center">{msTeam.number}</div>
-                                            <div className="flex-1 text-center">{msTeam.status}</div>
-                                            <div className="flex-1 text-center">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={msTeam.interviewComplete}
-                                                    onChange={() => handleInterviewChange(msTeam.id, !msTeam.interviewComplete, "MIDDLE SCHOOL")}
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
-                                                />
-                                            </div>
-                                        </div>
-                                    )
-                                    })}
-                            </div>
-                            <div className="flex flex-col items-center w-[30vw]">
-                                <div>Vexu Division</div>
-                                <div className="flex justify-between w-full mt-5">
-                                    <div className="flex-1 text-center font-bold">Team</div>
-                                    <div className="flex-1 text-center font-bold">Status</div>
-                                    <div className="flex-1 text-center font-bold">Interviewed</div>
-                                </div>
-                                {vexuTeams.map(vexuTeam => {
-                                    return (
-                                        <div className="flex justify-between w-full">
-                                            <div className="flex-1 text-center">{vexuTeam.number}</div>
-                                            <div className="flex-1 text-center">{vexuTeam.status}</div>
-                                            <div className="flex-1 text-center">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={vexuTeam.interviewComplete}
-                                                    onChange={() => handleInterviewChange(vexuTeam.id, !vexuTeam.interviewComplete, "VEXU")}
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
-                                                />
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                        <div className="flex flex-row items-center justify-center text-black w-full gap-x-20 text-xl">
+                            {divisions.map((division, index) => (
+                                <DivisionTable
+                                    key={index}
+                                    divisionName={division.name}
+                                    teams={division.teams}
+                                    handleInterviewChange={handleInterviewChange}
+                                    interviewComplete={false}
+                                />
+                            ))}
                         </div>
-                        <div>
-                        <Button onClick={fetchSelectedTeams} sx={{backgroundColor: "blue", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>REFRESH</Button>
+                        {/* interview complete section below */}
+                        <div className="flex flex-row items-center justify-center text-black w-full gap-x-20 text-xl">
+                                {divisions.map((division, index) => (
+                                    <DivisionTable
+                                        key={index}
+                                        divisionName={division.name}
+                                        teams={division.teams}
+                                        handleInterviewChange={handleInterviewChange}
+                                        interviewComplete={true}
+                                    />
+                                ))}
+                        </div>
+                        <div className="flex justify-center items-center">
+                            <Button onClick={fetchSelectedTeams} sx={{backgroundColor: "blue", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>REFRESH</Button>
+                            <Button onClick={handleLogout} sx={{backgroundColor: "blue", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>SIGN OUT</Button>
                         </div>
                     </div>
             )

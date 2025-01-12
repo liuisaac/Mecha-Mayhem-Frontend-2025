@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useContext, createContext } from "react";
 import { auth } from "@/config/firebaseConfig.mjs";
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 // this component manages user state using React Context
 
