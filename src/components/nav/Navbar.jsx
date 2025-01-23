@@ -9,6 +9,7 @@ import Link from "next/link";
 const Navbar = () => {
     const whitelist = ["/streams/matches", "/streams/vods"]
     const location = usePathname();
+    
     const [active, setActive] = useState(String(location.pathname));
     const [hidden, setHidden] = useState(false);
     const [hidable, setHidable] = useState(true);
