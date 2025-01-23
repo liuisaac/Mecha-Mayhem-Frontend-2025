@@ -14,7 +14,7 @@ const Hero_Mobile = () => {
 
     useEffect
     return (
-        <div className="w-screen h-screen bg-transparent">
+        <div className="w-screen bg-transparent">
             <figure className="relative w-[100vw] h-[105vw] mt-2">
                 <Image
                     src="/home/hero/Medallion.svg"
@@ -36,7 +36,7 @@ const Hero_Mobile = () => {
 
             <div className="w-screen h-96 bg-transparent">
                 <div className="flex-col-centered relative w-full">
-                    <Year startYear={2019} targetYear={2025} />
+                    <Year startYear={2019} targetYear={2025}/>
                     <p className={`text-[#9F9F9F] font-bebas w-full flex-row-centered text-5xl -skew-x-12 ${fade ? "opacity-100" : "opacity-0"} transition duration-500 delay-[1000ms] mt-10 -mb-4`}>
                         FEBRUARY
                     </p>

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-const Day = ({ startDay, targetDay, startAnimation }) => {
+const Day = ({ startDay, targetDay, startAnimation=true }) => {
     const startingFIndex = 20; // starting day
     const dayPadding = 6;
     const maxDay = startDay + dayPadding;
@@ -85,7 +85,7 @@ const Day = ({ startDay, targetDay, startAnimation }) => {
                                 x: -1000 + rotationConst * (startingFIndex - fIndex),
                             }}
                             className={`                      
-                            font-bebas text-center ${day < 10 ? "ml-8" : ""} ${(day === "to") ? "2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-xl" : "2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl text-6xl"}`}
+                            font-bebas mt-12 sm:mt-0 text-center ${day < 10 ? "ml-8" : ""} ${(day === "to") ? "ml-8 mr-2 sm:mx-0 2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-xl" : "2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl text-6xl"}`}
                         >
                             {day}
                         </motion.p>

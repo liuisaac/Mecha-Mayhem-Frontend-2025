@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Backdrop from "../home/hero/Backdrop";
 import Media_Mobile from "./Media-Mobile";
+import Link from "next/link";
+import Button from "../Button";
 
 const Media = () => {
     return (
@@ -19,21 +21,15 @@ const Media = () => {
                             Top-notch photography, curated by both professionals
                             and our community.
                         </p>
-                        <button className="2xl:w-[27vw] 2xl:h-[10vh] lg:w-[30vw] lg:h-[8vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20">
-                            <figure className="flex-row-start">
-                                <div className="relative w-12 h-12">
-                                    <Image
-                                        src="/media/driveico.svg"
-                                        alt="mecha mayhem logo"
-                                        style={{ objectFit: "contain" }}
-                                        fill
-                                    />
-                                </div>
-                            </figure>
-                            <h2 className="flex-row-centered ml-5 h-full text-center 2xl:text-5xl lg:text-4xl z-10 font-bebas mt-2  text-black hover:text-black transition duration-1000 ease-in-out">
-                                OPEN DRIVE FOLDER
-                            </h2>
-                        </button>
+                        <Button
+                            href="https://www.flickr.com/photos/mercmediateam/albums/72177720314562049"
+                            className="2xl:w-[27vw] 2xl:h-[10vh] lg:w-[30vw] lg:h-[8vh] bg-[#E31F2B] hover:bg-white transition duraiton-100 ease-in-out group flex-row-centered rounded-sm mt-20"
+                            iconClassName="flex-row-start relative w-12 h-12"
+                            alt="mecha mayhem logo"
+                            textClassName="flex-row-centered h-full text-center 2xl:text-5xl lg:text-4xl z-10 font-bebas mt-2  text-black hover:text-black transition duration-1000 ease-in-out"
+                        >
+                            SEE IMAGES
+                        </Button>
                     </div>
                 </aside>
 
