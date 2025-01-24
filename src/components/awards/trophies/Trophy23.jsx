@@ -23,7 +23,7 @@ const Trophy23 = () => {
     };
 
     return (
-        <div className="absolute left-0 flex flex-row h-[110vh] w-[70vh] justify-center overflow-visiblebg-transparent">
+        <div className="absolute right-0 top-[30%] flex flex-row h-[110vh] w-[70vh] justify-center overflow-visiblebg-transparent">
             <Canvas>
                 <PerspectiveCamera
                     makeDefault

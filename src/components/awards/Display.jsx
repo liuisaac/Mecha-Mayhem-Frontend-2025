@@ -7,26 +7,26 @@ const Display = ({ data }) => {
                 {data[0] ? (
                     <table className="w-[60vw]">
                         <thead>
-                            <tr className="text-white font-rubik text-xl text-left">
+                            <tr className="text-white font-lexend text-2xl text-center lg:text-left">
                                 <th className="pr-8">AWARD</th>
                                 <th className="pr-8">TEAM</th>
-                                <th className="pr-8">NAME</th>
-                                <th className="pr-8">AFFILIATION</th>
-                                <th className="pr-8">LOCATION</th>
+                                <th className="pr-8 hidden">NAME</th>
+                                <th className="pr-8 hidden">AFFILIATION</th>
+                                <th className="pr-8 hidden">LOCATION</th>
                             </tr>
                         </thead>
-                        <tbody className="text-regular text-white opacity-80">
+                        <tbody className="text-regular text-white text-center lg:text-left">
                             {data.map((row, index) => (
                                 <tr key={index}>
                                     <td className="pr-4 pt-6">
                                         {row["award"]}
                                     </td>
                                     <td className="pr-4 pt-6">{row["team"]}</td>
-                                    <td className="pr-4 pt-6">{row["name"]}</td>
-                                    <td className="pr-4 pt-6">
+                                    <td className="pr-4 pt-6 hidden lg:table-cell">{row["name"]}</td>
+                                    <td className="pr-4 pt-6 hidden lg:table-cell">
                                         {row["affiliation"]}
                                     </td>
-                                    <td className="pr-4 pt-6">
+                                    <td className="pr-4 pt-6 hidden lg:table-cell">
                                         {row["location"]}
                                     </td>
                                 </tr>
