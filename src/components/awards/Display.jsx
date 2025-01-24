@@ -10,9 +10,9 @@ const Display = ({ data }) => {
                             <tr className="text-white font-lexend text-2xl text-center lg:text-left">
                                 <th className="pr-8">AWARD</th>
                                 <th className="pr-8">TEAM</th>
-                                <th className="pr-8 hidden">NAME</th>
-                                <th className="pr-8 hidden">AFFILIATION</th>
-                                <th className="pr-8 hidden">LOCATION</th>
+                                <th className="pr-8 hidden lg:table-cell">NAME</th>
+                                <th className="pr-8 hidden lg:table-cell ">AFFILIATION</th>
+                                <th className="pr-8 hidden lg:table-cell">LOCATION</th>
                             </tr>
                         </thead>
                         <tbody className="text-regular text-white text-center lg:text-left">

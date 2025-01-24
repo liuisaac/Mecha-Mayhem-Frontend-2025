@@ -35,6 +35,7 @@ const Awards = () => {
     }, []);
 
     const AWARDS_MAP = {
+        
         "2023":
             (<div className="mt-16 lg:mt-0">
                 <div className="z-10 relative">
