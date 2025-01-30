@@ -20,7 +20,6 @@
     "dotenv": "^16.4.5",
     "framer-motion": "^11.3.17",
     "google-auth-library": "^9.11.0",
-    "googleapis": "^140.0.1",
     "net": "^1.0.2",
     "next": "^14.2.5",
     "next-connect": "^1.0.0",

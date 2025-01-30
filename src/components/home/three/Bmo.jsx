@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
-import { useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { PerspectiveCamera } from "@react-three/drei";
 

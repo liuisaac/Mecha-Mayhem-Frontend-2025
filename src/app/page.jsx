@@ -1,11 +1,12 @@
 import dynamic from "next/dynamic";
 import Waves from "@/components/Waves";
-import Hero from "@/components/home/desktop/Hero";
+import Hero from "@/components/home/Hero";
 
 // Dynamically load components with SSR disabled
-const Calgary = dynamic(() => import("@/components/home/desktop/Calgary"), { ssr: false });
-const Awards = dynamic(() => import("@/components/home/desktop/Awards"), { ssr: false });
-const Venue = dynamic(() => import("@/components/home/desktop/Venue"), { ssr: false });
+const Calgary = dynamic(() => import("@/components/home/Calgary"), { ssr: false });
+const Awards = dynamic(() => import("@/components/home/Awards"), { ssr: false });
+const Venue = dynamic(() => import("@/components/home/Venue"), { ssr: false });
+const Sponsors = dynamic(() => import("@/components/home/Sponsors"), { ssr: false });
 
 export default function Home() {
     return (
@@ -15,6 +16,7 @@ export default function Home() {
             <Calgary />
             <Awards /> 
             <Venue />  
+            <Sponsors />
         </main>
     );
 }

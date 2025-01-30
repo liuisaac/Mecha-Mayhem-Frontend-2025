@@ -1,7 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Backdrop from "../home/hero/Backdrop";
-import Link from "next/link";
 import Button from "../Button";
 
 const Media_Mobile = () => {
