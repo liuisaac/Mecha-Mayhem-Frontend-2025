@@ -133,8 +133,6 @@ const Navbar = () => {
                             ["/ STREAMS /", "/streams"],
                             ["/ AWARDS /", "/awards"],
                             ["/ INFO /", "/info"],
-                            ["/ JUDGES /", "/judges/login"],
-                            ["/ TEAMS /", "/teams/login"]
                         ].map(([title, url]) => (
                             <Link
                                 href={url}

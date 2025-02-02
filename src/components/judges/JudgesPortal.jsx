@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import { Button } from "@mui/material";
+import Banner from "./Banner"
 import axios from "axios";
 
 export const JudgesPortal = () => {
@@ -222,24 +223,7 @@ export const JudgesPortal = () => {
         return (
             currentUser && (
                 <div className="w-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-16 sm:mt-20">
-                        <div className="flex items-center justify-around bg-red-600 h-[25vh] md:h-[22vh] lg:h-[30vh] sticky top-0 w-full gap-x-10">
-                                {/* Left Container with Image */}
-                                <div className="relative w-[30vw] h-[30vw]">
-                                    <Image
-                                        src="/HexLogo.svg"
-                                        alt="mecha mayhem logo"
-                                        style={{ objectFit: "contain" }}
-                                        fill
-                                    />
-                                </div>
-
-                                {/* Right Container with "TEAMS PORTAL" */}
-                                <div className="flex-1 flex justify-center items-center">
-                                    <div className="font-bold text-3xl sm:text-4xl lg:text-6xl">
-                                        JUDGES PORTAL
-                                    </div>
-                                </div>
-                        </div>
+                        <Banner title="JUDGES PORTAL"/>
                         <div className="flex flex-col w-screen h-[150vh] lg:text-md xl:text-xl mt-1">
                             <div className="flex ml-auto gap-x-4 mr-5">
                                 <Button onClick={fetchSelectedTeams} sx={{backgroundColor: "black", color: "white", fontWeight: "bold", fontSize: "1rem",padding: "8px 16px", borderRadius: "6px", "&:active": {backgroundColor: "gray",}}}>REFRESH</Button>

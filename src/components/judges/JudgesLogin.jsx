@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { AuthContext } from "../context/AuthContext";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import Banner from "/src/components/judges/Banner";
 
 export function JudgesForm() {
   const router = useRouter();
@@ -73,24 +73,7 @@ export function JudgesForm() {
   /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
   return (
     <div className="w-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-16 sm:mt-20">
-      <div className="flex items-center justify-around bg-red-600 h-[25vh] md:h-[22vh] lg:h-[30vh] sticky top-0 w-full gap-x-10">
-              {/* Left Container with Image */}
-              <div className="relative w-[30vw] h-[30vw]">
-                  <Image
-                      src="/HexLogo.svg"
-                      alt="mecha mayhem logo"
-                      style={{ objectFit: "contain" }}
-                      fill
-                  />
-              </div>
-
-              {/* Right Container with "TEAMS PORTAL" */}
-              <div className="flex-1 flex justify-center items-center">
-                  <div className="font-bold text-3xl sm:text-4xl lg:text-6xl">
-                      JUDGES PORTAL LOGIN
-                  </div>
-              </div>
-      </div>
+      <Banner title="JUDGES PORTAL LOGIN"/>
       <div className="w-screen h-[80vh] flex items-start justify-center relative overflow-auto">   
         <form className="flex flex-col items-center justify-center h-[80%]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-center justify-start h-[25%] gap-y-4">
