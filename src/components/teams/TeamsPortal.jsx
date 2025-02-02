@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useTeamContext } from "../context/TeamsContext";
 import { Button } from "@mui/material";
+import Banner from "./Banner";
 import Image from "next/image";
 
 export default function TeamsPortal() {
@@ -82,24 +83,7 @@ export default function TeamsPortal() {
         return teamInfo && (
             <>  
                 <div className="w-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-16 sm:mt-20">
-                    <div className="flex items-center justify-around bg-red-600 h-[20vh] md:h-[22vh] lg:h-[30vh] sticky top-0 w-full gap-x-10">
-                        {/* Left Container with Image */}
-                        <div className="relative w-[30vw] h-[20vw]">
-                            <Image
-                                src="/HexLogo.svg"
-                                alt="mecha mayhem logo"
-                                style={{ objectFit: "contain" }}
-                                fill
-                            />
-                        </div>
-
-                        {/* Right Container with "TEAMS PORTAL" */}
-                        <div className="flex-1 flex justify-center items-center">
-                            <div className="font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
-                                TEAMS PORTAL
-                            </div>
-                        </div>
-                    </div>
+                    <Banner title="TEAMS PORTAL"/>
                     <div className="flex flex-col items-center justify-center text-black w-full sticky gap-y-5 text-xl sm:text-3xl mt-10 mb-10">
                         <div>
                             Your team: <span className="font-bold">{teamInfo.number}</span>
