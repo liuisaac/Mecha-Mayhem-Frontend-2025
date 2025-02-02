@@ -134,14 +134,14 @@ export const JudgesPortal = () => {
         // teams with interviews not complete
         if (!interviewComplete) {
             return (
-                <div className="flex flex-col items-center w-[25vw]">
-                    <div className="top-2">{divisionName} Division</div>
+                <div className="flex h-[50%] flex-col items-center w-[25vw]">
+                    <div className="top-2 text-center">{divisionName} Division</div>
                     <div className="flex justify-between sticky w-full mt-5">
                         <div className="flex-1 text-center font-bold">Team</div>
                         <div className="flex-1 text-center font-bold">Status</div>
                         <div className="flex-1 text-center font-bold">Interviewed</div>
                     </div>
-                    <div className="overflow-y-auto max-h-[50vh] w-full">
+                    <div className="overflow-y-auto w-full">
                         {teams.map(team => {
                             if (!team.interviewComplete) {
                                 return (
@@ -221,47 +221,58 @@ export const JudgesPortal = () => {
     } else {
         return (
             currentUser && (
-                <div className="w-screen h-[100vh] relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-20">
-                        <div className="flex items-center justify-around bg-red-600 h-[30vh] w-full absolute top-0 gap-x-10">
-                            <div classname="relative w-[20vw] h-28">
-                                <Image
-                                    src="/HexLogo.svg"
-                                    alt="mecha mayhem logo"
-                                    style={{ objectFit: "contain" }}
-                                    fill
-                                />
-                            </div>
-                            <div className="font-bold text-7xl">
-                                JUDGES PORTAL
-                            </div>
+                <div className="w-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-16 sm:mt-20">
+                        <div className="flex items-center justify-around bg-red-600 h-[25vh] md:h-[22vh] lg:h-[30vh] sticky top-0 w-full gap-x-10">
+                                {/* Left Container with Image */}
+                                <div className="relative w-[30vw] h-[30vw]">
+                                    <Image
+                                        src="/HexLogo.svg"
+                                        alt="mecha mayhem logo"
+                                        style={{ objectFit: "contain" }}
+                                        fill
+                                    />
+                                </div>
+
+                                {/* Right Container with "TEAMS PORTAL" */}
+                                <div className="flex-1 flex justify-center items-center">
+                                    <div className="font-bold text-3xl sm:text-4xl lg:text-6xl">
+                                        JUDGES PORTAL
+                                    </div>
+                                </div>
                         </div>
-                        <div className="flex flex-row items-center justify-center text-black w-full gap-x-20 text-xl">
-                            {divisions.map((division, index) => (
-                                <DivisionTable
-                                    key={index}
-                                    divisionName={division.name}
-                                    teams={division.teams}
-                                    handleInterviewChange={handleInterviewChange}
-                                    interviewComplete={false}
-                                />
-                            ))}
-                        </div>
-                        {/* interview complete section below */}
-                        <div className="flex flex-row items-center justify-center text-black w-full gap-x-20 text-xl">
+                        <div className="flex flex-col w-screen h-[150vh] lg:text-md xl:text-xl mt-1">
+                            <div className="flex ml-auto gap-x-4 mr-5">
+                                <Button onClick={fetchSelectedTeams} sx={{backgroundColor: "black", color: "white", fontWeight: "bold", fontSize: "1rem",padding: "8px 16px", borderRadius: "6px", "&:active": {backgroundColor: "gray",}}}>REFRESH</Button>
+                                <Button onClick={handleLogout} sx={{backgroundColor: "black", color: "white", fontWeight: "bold", fontSize: "1rem",padding: "8px 16px", borderRadius: "6px", "&:active": {backgroundColor: "gray",}}}>SIGN OUT</Button>
+                            </div>
+                            <div className="w-screen h-[50%] flex items-start justify-center relative text-black gap-x-20 mt-10">
                                 {divisions.map((division, index) => (
                                     <DivisionTable
                                         key={index}
                                         divisionName={division.name}
                                         teams={division.teams}
                                         handleInterviewChange={handleInterviewChange}
-                                        interviewComplete={true}
+                                        interviewComplete={false}
                                     />
                                 ))}
+                            </div>
+                            {/* interview complete section below */}
+                            <div className="flex h-[50%] flex-row justify-center text-black w-full gap-x-20">
+                                    {divisions.map((division, index) => (
+                                        <DivisionTable
+                                            key={index}
+                                            divisionName={division.name}
+                                            teams={division.teams}
+                                            handleInterviewChange={handleInterviewChange}
+                                            interviewComplete={true}
+                                        />
+                                    ))}
+                            </div>
                         </div>
-                        <div className="flex justify-center items-center">
+                        {/* <div className="flex justify-center items-center">
                             <Button onClick={fetchSelectedTeams} sx={{backgroundColor: "blue", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>REFRESH</Button>
                             <Button onClick={handleLogout} sx={{backgroundColor: "blue", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>SIGN OUT</Button>
-                        </div>
+                        </div> */}
                     </div>
             )
         )

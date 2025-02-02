@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-export function JudgesForm({isLogin}) {
+export function JudgesForm() {
   const router = useRouter();
   const [error, setError] = useState("");
 
@@ -28,7 +28,7 @@ export function JudgesForm({isLogin}) {
     }
 }, [currentUser]);
   
-  const onSubmit = async (data, isLogin) => {
+  const onSubmit = async (data) => {
     login(data.email, data.password)
     .then((userCredential) => {
       // Signed in 
@@ -86,35 +86,27 @@ export function JudgesForm({isLogin}) {
 
               {/* Right Container with "TEAMS PORTAL" */}
               <div className="flex-1 flex justify-center items-center">
-                  <div className="font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                  <div className="font-bold text-3xl sm:text-4xl lg:text-6xl">
                       JUDGES PORTAL LOGIN
                   </div>
               </div>
       </div>
-      <div className="w-screen h-[80vh] flex items-center justify-center relative overflow-auto">   
-        <form className="flex flex-col items-center justify-center w-[30%] h-[80%]" onSubmit={handleSubmit(data => onSubmit(data, isLogin))}>
-            <div className="flex flex-col w-[65%] h-full">
-                <div className="flex flex-col items-center justify-center h-[40%]">
-                    {/* <div className="font-saira flex items-end justify-center text-3xl h-[50%]">Judges Portal Login</div> */}
-                    <div className="flex items-center justify-center h-[50%]">
-                      {error && <small className="text-danger text-red-500">{error}</small>}
-                    </div>
-                </div>
-                <div className="flex flex-col items-center justify-start h-[25%] gap-y-4">
-                    {/* register your input into the hook by invoking the "register" function */}
-                    <input className="text-white font-lexend bg-black border-2 border-gray-300 rounded w-[40vh] md:w-[50vh] p-2 h-10" placeholder="email" {...register("email", emailValidation)} />
-                    {/* errors will return when field validation fails  */}
-                    {errors.email && (<small className="text-danger text-red-500">{errors.email.message}</small>)}
+      <div className="w-screen h-[80vh] flex items-start justify-center relative overflow-auto">   
+        <form className="flex flex-col items-center justify-center h-[80%]" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col items-center justify-start h-[25%] gap-y-4">
+              {/* register your input into the hook by invoking the "register" function */}
+              <input className="text-white font-lexend bg-black border-2 border-gray-300 rounded w-[40vh] md:w-[50vh] p-2 h-10" placeholder="email" {...register("email", emailValidation)} />
+              {/* errors will return when field validation fails  */}
+              {errors.email && (<small className="text-danger text-red-500">{errors.email.message}</small>)}
 
-                    {/* include validation with required or other standard HTML validation rules */}
-                    <input type="password" autocomplate="off" className="text-white font-lexend bg-black border-2 border-gray-300 rounded w-[40vh] md:w-[50vh] p-2 h-10" placeholder="password" {...register("password", passwordValidation)} />
-                    {errors.password && (<small className="text-danger text-red-500">{errors.password.message}</small>)}
-                </div>
+              {/* include validation with required or other standard HTML validation rules */}
+              <input type="password" autocomplate="off" className="text-white font-lexend bg-black border-2 border-gray-300 rounded w-[40vh] md:w-[50vh] p-2 h-10" placeholder="password" {...register("password", passwordValidation)} />
+              {errors.password && (<small className="text-danger text-red-500">{errors.password.message}</small>)}
 
-                <div className="flex flex-row items-start justify-center gap-x-3 pt-10">
-                  <Button type="submit" sx={{backgroundColor: "black", color: "white", fontFamily: "font-saira"}}>Submit</Button>
-                </div>
-            </div>
+              <div className="flex flex-row items-start justify-center gap-x-3 pt-10">
+                <Button type="submit" sx={{backgroundColor: "black", color: "white", fontFamily: "font-saira"}}>Submit</Button>
+              </div>
+          </div>
         </form>
     </div>
     </div>

@@ -95,7 +95,7 @@ export default function TeamsPortal() {
 
                         {/* Right Container with "TEAMS PORTAL" */}
                         <div className="flex-1 flex justify-center items-center">
-                            <div className="font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                            <div className="font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
                                 TEAMS PORTAL
                             </div>
                         </div>
