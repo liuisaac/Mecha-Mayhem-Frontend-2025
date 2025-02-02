@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useTeamContext } from "../context/TeamsContext";
 import { Button } from "@mui/material";
-import Banner from "./Banner";
+import Banner from "../judges/Banner";
 import Image from "next/image";
 
 export default function TeamsPortal() {
