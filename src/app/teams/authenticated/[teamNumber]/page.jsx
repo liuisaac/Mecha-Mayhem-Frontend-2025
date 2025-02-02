@@ -3,10 +3,7 @@ import TeamsPortal from "@/components/teams/TeamsPortal";
 
 const page = () => {
     return (
-        <div className="bg-black relative">
-            <Waves/>
-            <TeamsPortal/>
-        </div>
+        <TeamsPortal/>
     );
 };
 

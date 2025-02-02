@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useTeamContext } from "../context/TeamsContext";
+import Image from "next/image";
 
 export default function TeamsLogin() {
     const [teamID, setTeamID] = useState("");
@@ -39,14 +40,36 @@ export default function TeamsLogin() {
 
 
     return (
-        <div className="w-screen h-screen flex flex-col items-center justify-center mt-10 relative overflow-auto">
-            <form className="flex flex-col items-center justify-center w-[30%] h-[80%] bg-black" onSubmit={handleSubmit}>
-                {error && (
-                    <div className="text-danger text-red-500 mb-10">{error}</div>
-                )}
-                <input type="text" id="teamID" name="teamID" value={teamID} className="text-black border-2 border-gray-300 rounded w-[100%] p-2 h-10" placeholder="Please Enter Your Team's ID: " onChange={(e) => setTeamID(e.target.value)} required />
-                <Button type="submit" sx={{backgroundColor: "white", color: "black", fontFamily: "font-saira"}}>Submit</Button>
-            </form>
+        <div className="w-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-16 sm:mt-20">
+            <div className="flex items-center justify-around bg-red-600 h-[25vh] md:h-[22vh] lg:h-[30vh] sticky top-0 w-full gap-x-10">
+                    {/* Left Container with Image */}
+                    <div className="relative w-[30vw] h-[30vw]">
+                        <Image
+                            src="/HexLogo.svg"
+                            alt="mecha mayhem logo"
+                            style={{ objectFit: "contain" }}
+                            fill
+                        />
+                    </div>
+
+                    {/* Right Container with "TEAMS PORTAL" */}
+                    <div className="flex-1 flex justify-center items-center">
+                        <div className="font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                            TEAMS PORTAL LOGIN
+                        </div>
+                    </div>
+            </div>
+            <div className="flex flex-col items-center justify-center text-black w-full h-[80vh]">
+                <form className="" onSubmit={handleSubmit}>
+                    {error && (
+                        <div className="text-danger text-center text-red-500 mb-10">{error}</div>
+                    )}
+                    <div className="flex flex-col items-center">
+                        <input type="text" id="teamID" name="teamID" value={teamID} className="text-white font-lexend bg-black border-2 border-gray-300 rounded w-[40vh] md:w-[50vh] p-2 h-10 mb-2" placeholder="Please Enter Your Team's ID: " onChange={(e) => setTeamID(e.target.value)} required />
+                        <Button type="submit" sx={{backgroundColor: "black", color: "white", fontFamily: "font-lexend"}}>Submit</Button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

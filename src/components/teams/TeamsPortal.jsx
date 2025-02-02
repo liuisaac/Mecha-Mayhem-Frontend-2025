@@ -80,70 +80,64 @@ export default function TeamsPortal() {
         </div>)
     } else {
         return teamInfo && (
-            <div className="w-screen h-[100vh] relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-20">
-                <div className="flex items-center justify-around bg-red-600 h-[30vh] w-full absolute top-0 gap-x-10">
-                    {/* Left Container with Image */}
-                    <div className="relative w-[20vw] h-48">
-                        <Image
-                            src="/HexLogo.svg"
-                            alt="mecha mayhem logo"
-                            style={{ objectFit: "contain" }}
-                            fill
-                        />
-                    </div>
+            <>  
+                <div className="w-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-16 sm:mt-20">
+                    <div className="flex items-center justify-around bg-red-600 h-[20vh] md:h-[22vh] lg:h-[30vh] sticky top-0 w-full gap-x-10">
+                        {/* Left Container with Image */}
+                        <div className="relative w-[30vw] h-[20vw]">
+                            <Image
+                                src="/HexLogo.svg"
+                                alt="mecha mayhem logo"
+                                style={{ objectFit: "contain" }}
+                                fill
+                            />
+                        </div>
 
-                    {/* Right Container with "TEAMS PORTAL" */}
-                    <div className="flex-1 flex justify-center items-center">
-                        <div className="font-bold text-7xl">
-                            TEAMS PORTAL
+                        {/* Right Container with "TEAMS PORTAL" */}
+                        <div className="flex-1 flex justify-center items-center">
+                            <div className="font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                                TEAMS PORTAL
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="flex flex-col items-center justify-center text-black w-full relative mt-[25vh] gap-y-5 text-3xl">
-                    <div>
-                        Your team: <span className="font-bold">{teamInfo.number}</span>
-                    </div>
-                    <div>
-                        Your status:&nbsp;
-                        {teamInfo.interviewComplete 
-                            ? " INTERVIEW COMPLETE" 
-                            : (
-                                <span 
-                                    className={ 
-                                        teamInfo.status === "NOT RESPONDED" 
-                                        ? "text-black"   // black for "NOT RESPONDED"
-                                        : teamInfo.status === "AWAY" 
-                                        ? "text-red-500" // red for "AWAY"
-                                        : teamInfo.status === "AT PIT" 
-                                        ? "text-[#32e355]" // green for "AT PIT"
-                                        : ""  // default case if no matching status
-                                    }
-                                >
-                                    CURRENTLY {teamInfo.status}
-                                </span>
-                            )
-                        }
-                    </div>
-                    <div className="flex flex-row items-center justify-center mt-10 gap-x-40">
-                        <Button disabled={teamInfo.interviewComplete} onClick={() => handleClick("AWAY")} sx={{backgroundColor: "red", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AWAY</Button>
-                        <Button disabled={teamInfo.interviewComplete} onClick={() => handleClick("AT PIT")} sx={{backgroundColor: "#32e355", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AT PIT</Button>
-                    </div>
-                    <div className="w-[70vw] font-bold mt-5">
-                        Please have at least ONE team member at your team pit if your interview status is set to <span style={{ color: "#32e355", fontWeight: "bold" }}>AT PIT</span>.
-                    </div>
-                    <div className="w-[70vw] font-bold mt-5">
-                        Judging will happen anytime matches are running.
-                    </div>
-                    {/* <div className="flex flex-col font-bold gap-y-10 mt-20">
+                    <div className="flex flex-col items-center justify-center text-black w-full sticky gap-y-5 text-xl sm:text-3xl mt-10 mb-10">
                         <div>
+                            Your team: <span className="font-bold">{teamInfo.number}</span>
+                        </div>
+                        <div>
+                            Your status:&nbsp;
+                            {teamInfo.interviewComplete 
+                                ? " INTERVIEW COMPLETE" 
+                                : (
+                                    <span 
+                                        className={ 
+                                            teamInfo.status === "NOT RESPONDED" 
+                                            ? "text-black"   // black for "NOT RESPONDED"
+                                            : teamInfo.status === "AWAY" 
+                                            ? "text-red-500" // red for "AWAY"
+                                            : teamInfo.status === "AT PIT" 
+                                            ? "text-[#32e355]" // green for "AT PIT"
+                                            : ""  // default case if no matching status
+                                        }
+                                    >
+                                        CURRENTLY {teamInfo.status}
+                                    </span>
+                                )
+                            }
+                        </div>
+                        <div className="flex flex-col sm:flex-row items-center justify-center sm:mt-10 gap-y-5 sm:gap-x-40">
+                            <Button disabled={teamInfo.interviewComplete} onClick={() => handleClick("AWAY")} sx={{backgroundColor: "red", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AWAY</Button>
+                            <Button disabled={teamInfo.interviewComplete} onClick={() => handleClick("AT PIT")} sx={{backgroundColor: "#32e355", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>AT PIT</Button>
+                        </div>
+                        <div className="w-[70vw] font-bold mt-5">
                             Please have at least ONE team member at your team pit if your interview status is set to <span style={{ color: "#32e355", fontWeight: "bold" }}>AT PIT</span>.
                         </div>
-                        <div >
+                        <div className="w-[70vw] font-bold mt-5">
                             Judging will happen anytime matches are running.
                         </div>
-                    </div> */}
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 }
