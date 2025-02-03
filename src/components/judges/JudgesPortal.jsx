@@ -22,10 +22,31 @@ export const JudgesPortal = () => {
             ); 
 
             let hsTeams = [], msTeams = [], vexuTeams = [], iViewTeams = [];
-            const teams = Object.values(response.data).sort((team1, team2) => {
-                team1.number.localeCompare(team2.number);
-            });
+            const teams = Object.values(response.data);
+
+            console.log(teams);
     
+            teams.sort((team1, team2) => {
+                const team1Num = team1.number
+                const team2Num = team2.number
+                const num1 = parseInt(team1Num);
+                const num2 = parseInt(team2Num);
+
+                const is1Numeric = !isNaN(num1);
+                const is2Numeric = !isNaN(num2);
+                
+                if (is1Numeric && is2Numeric) {
+                    // If both are numeric, sort by the numeric value
+                    return num1 - num2;
+                  } else if (!is1Numeric && !is2Numeric) {
+                    // If both are alphabetic, sort alphabetically
+                    return team1Num.localeCompare(team2Num);
+                  } else {
+                    // If one is numeric and the other is alphabetic, treat numeric as "less"
+                    return is1Numeric ? -1 : 1;
+                  }
+            });
+
             console.log(teams);
     
             teams.forEach(team => {
@@ -135,7 +156,7 @@ export const JudgesPortal = () => {
         // teams with interviews not complete
         if (!interviewComplete) {
             return (
-                <div className="flex h-[50%] flex-col items-center w-[25vw]">
+                <div className="flex h-[80%] flex-col items-center w-[25vw]">
                     <div className="top-2 text-center">{divisionName} Division</div>
                     <div className="flex justify-between sticky w-full mt-5">
                         <div className="flex-1 text-center font-bold">Team</div>
@@ -172,34 +193,36 @@ export const JudgesPortal = () => {
             )
         } else {
             return (
-                <div className="flex flex-col items-center w-[25vw]">
+                <div className="flex h-[80%] flex-col items-center w-[25vw]">
                     <div className="flex justify-between w-full mt-5">
                         <div className="flex-1 text-center font-bold">Interviewed Teams</div>
                     </div>
-                    {teams.map(team => {
-                            if (team.interviewComplete) {
-                                return (
-                                    <div className="flex justify-between w-full">
-                                        <div className="flex-1 text-center">{team.number}</div>
-                                        {/* <div className="flex-1 text-center">{team.status}</div> */}
-                                        <div className="flex-1 text-center">
-                                            <span 
-                                                className={`inline-block w-6 h-6 rounded-full ${getStatusColor(team.status)}`} 
-                                                title={`Status: ${team.status}`}
-                                            />
+                    <div className="overflow-y-auto w-full">
+                        {teams.map(team => {
+                                if (team.interviewComplete) {
+                                    return (
+                                        <div className="flex justify-between w-full">
+                                            <div className="flex-1 text-center">{team.number}</div>
+                                            {/* <div className="flex-1 text-center">{team.status}</div> */}
+                                            <div className="flex-1 text-center">
+                                                <span 
+                                                    className={`inline-block w-6 h-6 rounded-full ${getStatusColor(team.status)}`} 
+                                                    title={`Status: ${team.status}`}
+                                                />
+                                            </div>
+                                            <div className="flex-1 text-center">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={team.interviewComplete}
+                                                    onChange={() => handleInterviewChange(team.id, !team.interviewComplete, divisionName)}
+                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="flex-1 text-center">
-                                            <input
-                                                type="checkbox"
-                                                checked={team.interviewComplete}
-                                                onChange={() => handleInterviewChange(team.id, !team.interviewComplete, divisionName)}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        })}
+                                    )
+                                }
+                            })}
+                    </div>
                 </div>
             )
         }
@@ -224,12 +247,12 @@ export const JudgesPortal = () => {
             currentUser && (
                 <div className="w-screen relative flex flex-col items-center justify-center overflow-auto bg-white font-lexend mt-16 sm:mt-20">
                         <Banner title="JUDGES PORTAL"/>
-                        <div className="flex flex-col w-screen h-[150vh] lg:text-md xl:text-xl mt-1">
+                        <div className="flex flex-col w-screen lg:text-md xl:text-xl mt-1">
                             <div className="flex ml-auto gap-x-4 mr-5">
                                 <Button onClick={fetchSelectedTeams} sx={{backgroundColor: "black", color: "white", fontWeight: "bold", fontSize: "1rem",padding: "8px 16px", borderRadius: "6px", "&:active": {backgroundColor: "gray",}}}>REFRESH</Button>
                                 <Button onClick={handleLogout} sx={{backgroundColor: "black", color: "white", fontWeight: "bold", fontSize: "1rem",padding: "8px 16px", borderRadius: "6px", "&:active": {backgroundColor: "gray",}}}>SIGN OUT</Button>
                             </div>
-                            <div className="w-screen h-[50%] flex items-start justify-center relative text-black gap-x-20 mt-10">
+                            <div className="w-screen flex items-start justify-center relative text-black gap-x-20 mt-10">
                                 {divisions.map((division, index) => (
                                     <DivisionTable
                                         key={index}
@@ -241,7 +264,7 @@ export const JudgesPortal = () => {
                                 ))}
                             </div>
                             {/* interview complete section below */}
-                            <div className="flex h-[50%] flex-row justify-center text-black w-full gap-x-20">
+                            <div className="w-screen flex items-start justify-center relative text-black gap-x-20 mt-10 mb-10">
                                     {divisions.map((division, index) => (
                                         <DivisionTable
                                             key={index}
@@ -253,10 +276,6 @@ export const JudgesPortal = () => {
                                     ))}
                             </div>
                         </div>
-                        {/* <div className="flex justify-center items-center">
-                            <Button onClick={fetchSelectedTeams} sx={{backgroundColor: "blue", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>REFRESH</Button>
-                            <Button onClick={handleLogout} sx={{backgroundColor: "blue", color: "black", fontWeight: "bold", fontSize: "2rem",padding: "12px 24px", borderRadius: "8px",}}>SIGN OUT</Button>
-                        </div> */}
                     </div>
             )
         )
