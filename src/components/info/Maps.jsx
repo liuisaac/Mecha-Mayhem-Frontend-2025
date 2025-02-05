@@ -5,13 +5,13 @@ const Maps = () => {
     return (
         <div className="flex-col-centered w-screen z-10">
             <div className="flex-col-centered w-screen">
-                <h1 className="text-8xl font-saira w-[70vw] text-center">
+                <h1 className="sm:text-8xl text-6xl font-saira sm:w-[70vw] text-center">
                     MAPS AND BROCHURES
                 </h1>
                 <figure className="flex-row-start">
-                    <div className="relative w-[55vw] h-[55vw]">
+                    <div className="relative sm:w-[55vw] h-[55vw] w-screen">
                         <Image
-                            src="/info/visuals/Mecha 2024 Map.png"
+                            src="/info/visuals/Mecha 2025 Map.png"
                             alt="mecha mayhem logo"
                             style={{ objectFit: "contain" }}
                             fill
@@ -19,7 +19,7 @@ const Maps = () => {
                     </div>
                 </figure>
                 <figure className="flex-row-start">
-                    <div className="relative w-[55vw] h-[55vw]">
+                    <div className="relative sm:w-[55vw] h-[55vw] w-screen">
                         <Image
                             src="/info/visuals/Brochure 1.png"
                             alt="mecha mayhem logo"
@@ -29,7 +29,7 @@ const Maps = () => {
                     </div>
                 </figure>
                 <figure className="flex-row-start">
-                    <div className="relative w-[55vw] h-[55vw]">
+                    <div className="relative sm:w-[55vw] h-[55vw] w-screen">
                         <Image
                             src="/info/visuals/Brochure 2.png"
                             alt="mecha mayhem logo"

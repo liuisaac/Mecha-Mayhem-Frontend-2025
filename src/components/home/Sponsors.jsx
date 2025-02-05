@@ -1,133 +1,114 @@
-import fs from "fs";
-import path from "path";
-import Image from "next/image";
-const sponsorTiers = ["presenting", "gold", "silver", "bronze", "supporter"];
+"use client"
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+
+const sponsorTiers = ["presenting", "gold", "silver", "bronze", "supporter"];
 const colorMap = {
-    gold: "#F1C232",
-    silver: "#CCCCCC",
-    bronze: "#B47606",
+  gold: "#F1C232",
+  silver: "#CCCCCC",
+  bronze: "#B47606",
 };
 
-function getSponsors() {
-    const sponsors = [];
-
-    sponsorTiers.forEach((tier) => {
-        const tierPath = path.join(process.cwd(), "public", "sponsors", tier);
-        if (fs.existsSync(tierPath)) {
-            const sponsorFiles = fs.readdirSync(tierPath);
-            sponsorFiles.forEach((file) => {
-                console.log(`/sponsors/${tier}/${file}`);
-                sponsors.push({
-                    tier,
-                    image: `/sponsors/${tier}/${file}`,
-                    name: path.parse(file).name,
-                });
-            });
-        }
-    });
-
-    return sponsors;
-}
-
-const Sponsor = ({ name, image, tier }) => (
+function Sponsor({ name, image, tier }) {
+  return (
     <figure className="flex-row-centered w-64 mx-12">
-        <div className="relative w-full h-40" href="/">
-            <Image
-                src={image}
-                alt={`${name} : ${tier}`}
-                style={{ objectFit: "contain" }}
-                fill
-                priority
-            />
-        </div>
+      <div className="relative w-full h-40">
+        <Image
+          src={image}
+          alt={`${name} : ${tier}`}
+          className="object-contain"
+          sizes="(max-width: 640px) 100vw, 640px"
+          fill
+          priority
+        />
+      </div>
     </figure>
-);
-
-function getGridColumns(count) {
-    if (count <= 3) return `grid-cols-${count}`;
-    if (count % 3 === 0) return "grid-cols-3";
-    if (count % 2 === 0) return "grid-cols-2";
-    return "grid-cols-3";
+  );
 }
 
-export default function Sponsors() {
-    const sponsors = getSponsors();
+export default function SponsorsPage() {
+  const [sponsors, setSponsors] = useState([]);
 
-    return (
-        <section className="py-12 w-screen">
-            <header className="flex flex-row items-center justify-center font-saira text-8xl">
-                OUR SPONSORS
-            </header>
+  useEffect(() => {
+    fetch("/local_api/sponsors")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch");
+        return res.json();
+      })
+      .then((data) => {
+        setSponsors(data.sponsors || []);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch sponsors:", err);
+      });
+  }, []);
 
-            <figure className="flex-row-centered w-full px-4 mt-16">
-                <div className="relative w-full h-48" href="/">
-                    <Image
-                        src={"/sponsors/event_2025.svg"}
-                        alt={`Mecha Mayhem Event 2025`}
-                        style={{ objectFit: "contain" }}
-                        fill
-                    />
-                </div>
-            </figure>
+  return (
+    <section className="py-12 w-screen">
+                <header className="hidden sm:flex flex-row-centered text-8xl z-10 ml-16 font-saira w-full">
+                    OUR SPONSORS
+                </header>
 
-            <div className="flex flex-row items-center justify-center mt-16 w-screen px-20">
-                <figure className="w-[75vw] h-[1px] bg-white rounded-sm" />
-                <h2 className="font-bebas text-4xl w-96 text-center">
-                    PRESENTED BY
-                </h2>
-                <figure className="w-[75vw] h-[1px] bg-white rounded-sm" />
-            </div>
+                <header className="sm:hidden text-5xl z-10 font-saira flex-col-centered w-full">
+                    OUR
+                    <span className="text-7xl z-10 font-saira">SPONSORS</span>
+                </header>
+      <figure className="flex-row-centered w-full px-4 mt-16">
+        <div className="relative w-full h-48">
+          <Image
+            src="/sponsors/event_2025.svg"
+            alt="Mecha Mayhem Event 2025"
+            className="object-contain"
+            fill
+          />
+        </div>
+      </figure>
 
-            {sponsorTiers.map((tier) => {
-                const tierSponsors = sponsors.filter(
-                    (sponsor) => sponsor.tier === tier
-                );
-                if (tierSponsors.length === 0) return null;
+      <div className="flex flex-row items-center justify-center mt-16 w-screen px-20">
+        <figure className="w-[75vw] h-[1px] bg-white rounded-sm" />
+        <h2 className="font-bebas text-4xl w-96 text-center">
+          PRESENTED BY
+        </h2>
+        <figure className="w-[75vw] h-[1px] bg-white rounded-sm" />
+      </div>
 
-                const gridColumns = getGridColumns(tierSponsors.length);
+      {sponsorTiers.map((tier) => {
+        const tierSponsors = sponsors.filter((s) => s.tier === tier);
+        if (tierSponsors.length === 0) return null;
 
-                return (
+        return (
+          <div key={tier}>
+            {tier !== "presenting" && (
+              <div className="w-screen flex-row-centered my-8">
+                <h2 className="font-bebas text-7xl text-center text-white">
+                  {tier === "supporter" ? (
+                    "SUPPORTERS"
+                  ) : (
                     <>
-                        {!(tier == "presenting") && (
-                            <div className="w-screen flex-row-centered my-8">
-                                <h2 className="font-bebas text-7xl text-center text-white">
-                                    {tier == "supporter" ? (
-                                        "SUPPORTERS"
-                                    ) : (
-                                        <>
-                                            <span
-                                                style={{
-                                                    color: colorMap[tier],
-                                                }}
-                                            >
-                                                {tier}
-                                            </span>{" "}
-                                            SPONSORS
-                                        </>
-                                    )}
-                                </h2>
-                            </div>
-                        )}
-                        <div
-                            key={tier}
-                            className={`w-screen mb-12 ${
-                                tier == "presenting"
-                                    ? "bg-transparent"
-                                    : "bg-white"
-                            } flex flex-row items-center justify-center`}
-                        >
-                            <div
-                                className={`grid ${gridColumns} gap-8 w-full max-w-6xl px-4 place-items-center`}
-                            >
-                                {tierSponsors.map((sponsor) => (
-                                    <Sponsor key={sponsor.name} {...sponsor} />
-                                ))}
-                            </div>
-                        </div>
+                      <span className={colorMap[tier]}>
+                        {tier}
+                      </span>{" "}
+                      SPONSORS
                     </>
-                );
-            })}
-        </section>
-    );
+                  )}
+                </h2>
+              </div>
+            )}
+            <div
+              className={`w-screen mb-12 ${
+                tier === "presenting" ? "bg-transparent" : "bg-white"
+              } flex flex-row items-center justify-center`}
+            >
+              <div className={`grid lg:${tier == "presenting" ? "grid-cols-2" : "grid-cols-3"} md:grid-cols-2 sm:grid-cols-1 gap-8 w-full max-w-6xl px-4 place-items-center`}>
+                {tierSponsors.map((sponsorItem) => (
+                  <Sponsor key={sponsorItem.name} {...sponsorItem} />
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </section>
+  );
 }
