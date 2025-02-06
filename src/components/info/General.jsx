@@ -5,7 +5,7 @@ const General = () => {
     return (
         <div className="flex-col-centered w-screen z-10">
             <div className="flex-col-centered w-screen">
-                <h1 className="text-8xl font-saira w-[70vw] text-center">
+                <h1 className="smLtext-8xl text-6xl sm:mt-0 mt-20 font-saira sm:w-[70vw] w-full text-center">
                     WHAT IS MECHA MAYHEM?
                 </h1>
                 <figure className="flex-row-start">
@@ -19,8 +19,8 @@ const General = () => {
                     </div>
                 </figure>
             </div>
-            <div className="flex-row-centered w-[70vw]">
-                <p className="flex-col-centered font-lexend text-3xl w-1/2 gap-20">
+            <div className="flex-row-centered sm:w-[70vw] w-full">
+                <p className="flex-col-centered font-lexend sm:text-3xl text-xl sm:w-1/2 w-[80vw] gap-20">
                     <span>
                         Started in 2023, Mecha Mayhem brings together over 300
                         University, High school, and Middle school teams from
@@ -35,7 +35,7 @@ const General = () => {
                         own robotics team at your school or through our club!
                     </span>
                 </p>
-                <figure className="flex-row-end w-1/2">
+                <figure className="sm:flex hidden flex-row-end w-1/2">
                     <div className="relative w-[60vh] h-[30vw] border-2 border-white">
                         <Image
                             src="/info/sunset.svg"
@@ -47,10 +47,10 @@ const General = () => {
                 </figure>
             </div>
             <div className="flex-col-centered w-screen mt-36">
-                <h1 className="text-8xl font-saira w-[70vw] text-center">
+                <h1 className="sm:text-8xl text-6xl font-saira sm:w-[70vw] w-screen text-center">
                     WHAT IS VEX?
                 </h1>
-                <span className="font-lexend text-3xl w-1/2 mt-10 text-center">
+                <span className="font-lexend sm:text-3xl text-xl sm:w-1/2 w-[80vw] mt-10 sm:text-center">
                     VEX is an international robotics organization that supplies
                     the tools and parts necessary for students to create and
                     program robots. It is the largest robotics competition in
@@ -62,10 +62,10 @@ const General = () => {
                     </a>
                 </span>
 
-                <h1 className="text-6xl font-bebas w-[70vw] text-center mt-20">
+                <h1 className="text-6xl font-bebas sm:w-[70vw] w-screen text-center mt-20">
                     WHAT ARE SIGNATURE EVENTS
                 </h1>
-                <span className="font-lexend text-3xl w-1/2 mt-10 text-center">
+                <span className="font-lexend sm:text-3xl text-xl sm:w-1/2 w-screen mt-10 text-center">
                     Signature Events give teams the opportunity to play at a
                     tournament that is of the highest caliber. The mission of
                     these events is to provide more opportunities for teams that

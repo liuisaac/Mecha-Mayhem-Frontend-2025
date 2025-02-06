@@ -20,8 +20,8 @@ const Venue = () => {
                         <span className="text-7xl z-10 font-saira">VENUE</span>
                     </header>
 
-                    <h2 className="font-bebas sm:text-5xl text-4xl pl-4 mt-4">
-                        BMO CENTRE HALLS A1 A2
+                    <h2 className="font-bebas sm:text-5xl text-4xl pl-2 mt-4">
+                    1912 Flores Ladue Parade SE
                     </h2>
                     <p className="w-[80vw] sm:w-auto font-lexend sm:text-3xl text-xl flex-col-left mt-8 gap-2">
                         <span>100,000 sq. feet</span>

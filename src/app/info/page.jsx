@@ -4,7 +4,7 @@ import React from "react";
 
 const page = () => {
     return (
-        <div className="bg-black relative">
+        <div className="bg-black relative w-screen overflow-hidden">
             <Waves />
             <Info />
         </div>

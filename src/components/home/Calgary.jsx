@@ -20,6 +20,9 @@ const RegisterButton = () => {
         {/* <p className="w-full flex-row-centered mt-4 text-sm">
           Registration closes Oct 13
         </p> */}
+        <p className="w-full flex-row-centered mt-4 text-sm">
+          Note: Spectating is free!
+        </p>
       </div>
     );
   };
@@ -64,10 +67,10 @@ const Calgary = () => {
                             <div className="w-[70vw] sm:w-[30vw] sm:h-auto 2xl:text-3xl xl:text-2xl lg:text-xl text-xl sm:text-base text-[#7c7c7c] sm:ml-0 sm:mt-10">
                                 Mecha Mayhem brings together{" "}
                                 <span className="text-white font-semibold">
-                                    over 260 teams
+                                    over 200 teams
                                 </span>{" "}
                                 from around the world to compete at the BMO
-                                Center in Calgary, AB, Canada. Teams battle for
+                                Centre in Calgary, AB, Canada. Teams battle for
                                 the title of{" "}
                                 <span className="text-white font-semibold">
                                     Mecha Mayhem Tournament Champions

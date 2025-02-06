@@ -9,6 +9,7 @@ const Model = ({ url }) => {
     const gltf = useLoader(GLTFLoader, url);
     return <primitive object={gltf.scene} position={[0, 0.34, 0]} />; // Adjust the Y position to move it up
 };
+
 const StandingField = () => {
     const height = 0.7;
     const modelUrl = "./three/f.glb";
