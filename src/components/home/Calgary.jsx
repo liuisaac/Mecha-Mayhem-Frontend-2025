@@ -70,7 +70,7 @@ const Calgary = () => {
                                     over 200 teams
                                 </span>{" "}
                                 from around the world to compete at the BMO
-                                Center in Calgary, AB, Canada. Teams battle for
+                                Centre in Calgary, AB, Canada. Teams battle for
                                 the title of{" "}
                                 <span className="text-white font-semibold">
                                     Mecha Mayhem Tournament Champions

@@ -2,6 +2,7 @@
 const nextConfig = {
     images: {
         domains: [
+            "mechamayhem.ca",
             "lh3.googleusercontent.com",
             "localhost",
             "storage.googleapis.com",
