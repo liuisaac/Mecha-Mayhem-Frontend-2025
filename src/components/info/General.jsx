@@ -63,7 +63,7 @@ const General = () => {
                 </span>
 
                 <h1 className="text-6xl font-bebas sm:w-[70vw] w-screen text-center mt-20">
-                    WHAT ARE SIGNATURE EVENTS
+                    WHAT ARE SIGNATURE EVENTS?
                 </h1>
                 <span className="font-lexend sm:text-3xl text-xl sm:w-1/2 w-screen mt-10 text-center">
                     Signature Events give teams the opportunity to play at a

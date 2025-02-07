@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Media_Mobile from "./Media-Mobile";
-import Button from "../Button";
+import Button from "../ui/Button";
 
 const Media = () => {
     return (

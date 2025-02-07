@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import Waves from "@/components/Waves";
+import Waves from "@/components/ui/Waves";
 import Hero from "@/components/home/Hero";
 
 // Dynamically load components with SSR disabled

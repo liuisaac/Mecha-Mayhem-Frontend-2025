@@ -1,5 +1,5 @@
 import Info from "@/components/info/Info";
-import Waves from "@/components/Waves";
+import Waves from "@/components/ui/Waves";
 import React from "react";
 
 const page = () => {

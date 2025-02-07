@@ -6,7 +6,7 @@ import Trophy23 from "./trophies/Trophy23";
 import Trophy24 from "./trophies/Trophy24";
 import Display from "./Display";
 import axios from "axios";
-import Button from "../Button";
+import Button from "../ui/Button";
 
 const Awards = () => {
     const [awards2023, setAwards2023] = useState([]);
@@ -35,13 +35,12 @@ const Awards = () => {
     }, []);
 
     const AWARDS_MAP = {
-        
         "2023":
             (<div className="mt-16 lg:mt-0">
                 <div className="z-10 relative">
                     <Display data={awards2023} />
                 </div>
-                <div className="opacity-70"><Trophy23 /></div>
+                <div className="sm:flex opacity-70 hidden"><Trophy23 /></div>
             </div>),
 
         "2024":
@@ -49,12 +48,12 @@ const Awards = () => {
                 <div className="z-10 relative">
                     <Display data={awards2024} />
                 </div>
-                <div className="opacity-70"><Trophy24 /></div>
+                <div className="sm:flex opacity-70 hidden"><Trophy24 /></div>
             </div>),
     }
 
     return (
-        <section className="relative lg:flex lg:flex-row lg:justify-center w-screen h-screen bg-transparent mt-[64px] flex flex-col items-center">
+        <section className="relative lg:flex lg:flex-row lg:justify-center w-screen bg-transparent mt-[64px] flex flex-col items-center">
             <h1 className="font-saira text-6xl pt-8 lg:hidden">AWARDS</h1>
             <p className="font-lexend text-xl px-8 py-2 text-center lg:hidden">
                 Unforgettable custom awards for each year. Check out our past winners below.
@@ -64,7 +63,7 @@ const Awards = () => {
                 <h1 className="font-saira text-8xl">AWARDS</h1>
                 <p className="font-lexend text-xl mt-4 mb-12">Unforgettable custom awards for each year. Check out our past winners below.</p>
 
-                <div className="flex w-fit space-x-4 p-2 lg:p-4 bg-red-600 -skew-x-12 mx-auto text-black font-lexend mt-4">
+                <div className="z-30 flex w-fit space-x-4 p-2 lg:p-4 bg-red-600 -skew-x-12 mx-auto text-black font-lexend mt-4">
                     <button
                         onClick={() => setCurrentYear("2024")}
                         className={`border border-black px-2 py-1 lg:px-3 lg:py-2 text-xl hover:bg-black hover:text-white transition-all `}

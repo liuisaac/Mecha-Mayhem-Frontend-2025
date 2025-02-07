@@ -3,7 +3,7 @@ import React from "react";
 import General from "./General";
 import Maps from "./Maps";
 import FAQ from "./FAQ";
-import Button from "../Button";
+import Button from "../ui/Button";
 
 const Info = () => {
     return (

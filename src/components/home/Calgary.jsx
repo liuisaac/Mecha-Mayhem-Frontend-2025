@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Button from "../Button";
+import Button from "../ui/Button";
 
 const buttonRef = "https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-V5RC-24-5504.html#general-info";
 const specRef = "https://www.zeffy.com/en-CA/ticketing/7f86c0af-0963-462e-ad8e-c350a9b042ab"
