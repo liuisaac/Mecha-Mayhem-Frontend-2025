@@ -1,5 +1,5 @@
 import Awards from "@/components/awards/Awards";
-import Waves from "@/components/Waves";
+import Waves from "@/components/ui/Waves";
 import React from "react";
 
 const page = () => {

@@ -6,7 +6,7 @@ import Matches from "@/components/profile/analytics/Matches";
 import Overview from "@/components/profile/analytics/Overview";
 import Profile from "@/components/profile/Profile";
 import TeamSelected from "@/components/profile/TeamSelected";
-import Waves from "@/components/Waves";
+import Waves from "@/components/ui/Waves";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import axios from "axios";

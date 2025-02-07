@@ -1,6 +1,6 @@
 import Gallery from "@/components/media/Gallery/Gallery";
 import Media from "@/components/media/Media";
-import Waves from "@/components/Waves";
+import Waves from "@/components/ui/Waves";
 import React from "react";
 
 const page = () => {
